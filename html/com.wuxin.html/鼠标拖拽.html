@@ -66,13 +66,18 @@
 				height: 33px;
 				background-color: aliceblue;
 			}
+			
+			.test{
+				width: 100px;
+				height: 33px;
+				background-color: #87CEEB;
+			}
 		</style>
 	</head>
 	<body>
 
 		<button>点击登录</button>
-
-
+		<div class="test"></div>
 		<!-- 登录框 -->
 		<div class="login-box">
 			<div class="login">
@@ -87,13 +92,10 @@
 					<button>登录</button>
 					<button>关闭</button>
 				</div>
-
+				
+	
 			</div>
-
-
 		</div>
-
-
 		<!-- 遮罩层 -->
 
 		<div class="login-bg"></div>
@@ -103,11 +105,8 @@
 		鼠标在屏幕中位置 - 盒子对应在屏幕中的位置
 		 鼠标保持在盒子内坐标不变 */
 			let btns = document.querySelectorAll('button')
-
 			var box = document.querySelector('.login-box')
 			var bg = document.querySelector('.login-bg')
-
-
 			btns[0].addEventListener('click', function() {
 				// alert('hello')
 				box.style.display = 'block'
@@ -117,8 +116,6 @@
 
 			btns[1].addEventListener('click', function() {
 				alert('登录成功')
-				// box.style.display = 'block'
-
 			})
 
 			btns[2].addEventListener('click', function() {
@@ -128,21 +125,16 @@
 
 			})
 
-
-
-
-
-			// 监听鼠标移入事件
+			// 鼠标按下事件
 			box.addEventListener('mousedown', function(e) {
 				// 获取鼠标在盒子中坐标
 				let x = e.pageX - box.offsetLeft
 				let y = e.pageY - box.offsetTop
 				console.log(x, y);
-				
-				
 				//  添加拖拽事件
 				document.addEventListener('mousemove', move)
 				
+				// 计算鼠标在盒子内的坐标 以及 计算盒子到浏览器边框的距离
 				function move(e) {
 					box.style.left = e.pageX - x + 'px'
 					box.style.top = e.pageY - y + 'px'
@@ -150,9 +142,18 @@
 
 				// 鼠标松开解除拖拽事件
 				document.addEventListener('mouseup', function(e) {
-					document.removeEventListener('mousemove',move())
+					document.removeEventListener('mousedown',move)
 				})
 
+			})
+			
+			
+			var test = document.querySelector('.test')
+			// test.onclick = ()=>{
+			// 	alert('hello')
+			// }
+			test.addEventListener('mousedown',function(){
+				alert('hello')
 			})
 		</script>
 	</body>
