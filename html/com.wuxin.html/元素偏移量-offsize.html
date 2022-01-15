@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>元素偏移量offsize</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			.box {
+				height: 200px;
+				width:100%;
+				background-color: red;
+				margin: 100px;
+				padding: 100px;
+				border: 10px blue solid;
+			}
+
+			.son {
+				width: 2.75rem;
+				height: 2.75rem;
+				background: #000000;
+			}
+		</style>
+	</head>
+	<body>
+
+		<h3>获取元素的偏移量</h3>
+		<h3>offsetWidth = width + padding + margin + border</h3>
+		<h3>offsetHeight = height + padding + margin + border</h3>
+
+		<div class="box">
+
+
+			<div class="son"></div>
+
+
+		</div>
+
+
+		<script type="text/javascript">
+			let box = document.querySelector('.box')
+			// 获取元素高度 offsetHeight 能够获取到元素得到宽度 height = 元素自身高度 + 内边距  + 外边距
+			console.log('===================offsetHeight、offsetWidth包括所有边距=======================')
+			console.log(box.offsetHeight); // 420
+			// 获取元素宽度
+			console.log(box.offsetWidth); // 320
+			// 获取offsetLeft
+			console.log(box.offsetLeft); // 100
+			// 获取offsetTop
+			console.log(box.offsetTop); // 150
+
+
+			let son = document.querySelector('.son')
+
+			//  注意父亲的定位
+			console.log(son.offsetLeft) // 210
+			console.log(son.offsetTop) // 260
+
+
+			console.log('===================scroll等不包含border=======================')
+
+			console.log(box.scrollHeight) // 400 说明设个距离是不好含 border
+			console.log(box.scrollWidth) // 300
+			console.log(box.scrollTop) // 0
+			console.log(box.scrollLeft) // 0
+
+
+			console.log('===================client等不包含border=======================')
+
+			console.log(box.clientHeight) // 400 说明设个距离是不好含 border
+			console.log(box.clientWidth) // 300
+			console.log(box.clientTop) // 10 计算border
+			console.log(box.clientLeft) // 10 计算border
+			
+			const getWindowInfo = () => {
+				const windowInfo = {
+					width: window.innerWidth,
+					hight: window.innerHeight
+				}
+				console.log(windowInfo);
+			};
+			
+			
+			// 窗口大小改变监听事件
+			const debounce = (fn, delay) => {
+				let timer;
+				return function() {
+					if (timer) {
+						clearTimeout(timer);
+					}
+					timer = setTimeout(() => {
+						fn();
+					}, delay);
+				}
+			};
+			const cancalDebounce = debounce(getWindowInfo, 500);
+			
+			window.addEventListener('resize', cancalDebounce);
+
+
+		</script>
+	</body>
+</html>
