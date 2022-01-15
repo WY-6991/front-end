@@ -68,12 +68,12 @@
 			console.log(box.scrollLeft) // 0
 
 
-			console.log('===================client等不包含border=======================')
-
-			console.log(box.clientHeight) // 400 说明设个距离是不好含 border
+			console.log('==================可视化 大小 client等包含border，包含margin=======================')
+			console.log('可视化大小宽高简单来说就是只包含能看到的大小')
+			console.log(box.clientHeight) // 400 说明设个距离是不含 border
 			console.log(box.clientWidth) // 300
-			console.log(box.clientTop) // 10 计算border
-			console.log(box.clientLeft) // 10 计算border
+			console.log(box.clientTop) // 10 结果为border
+			console.log(box.clientLeft) // 10 结果border
 			
 			const getWindowInfo = () => {
 				const windowInfo = {
