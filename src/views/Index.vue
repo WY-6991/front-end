@@ -1,16 +1,16 @@
 <template>
-    <div>
-        <Nav/>
-        <router-view/>
-    </div>
+  <div>
+    <BlogItem></BlogItem>
+  </div>
 </template>
 <script>
-
-import Nav from '@/components/layout/Nav'
+import BlogItem from "../components/BlogItem";
 export default {
-   name:'Index',
-   components: {
-       Nav
-   }
+  name: 'Index',
+  components: {BlogItem}
 }
 </script>
+<style scoped>
+
+
+</style>
