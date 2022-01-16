@@ -14,7 +14,7 @@
           </sui-dropdown-menu>
         </sui-dropdown>
 
-        <router-link class=" item" :class="{'active':$route.name==='Friends'}" to="/moment"><i
+        <router-link class=" item" :class="{'active':$route.name==='Moment'}" to="/moment"><i
             class="ui icon hotjar"></i>动态
         </router-link>
         <router-link class=" item" :class="{'active':$route.name==='Archive'}" to="/archive"><i
@@ -26,7 +26,7 @@
         <router-link class=" item" :class="{'active':$route.name==='About'}" to="/about"><i
             class="ui icon question circle "></i>关于
         </router-link>
-        <router-link class=" item" :class="{'active':$route.name==='About'}" to="/friend"><i
+        <router-link class=" item" :class="{'active':$route.name==='Update'}" to="/update"><i
             class="ui icon envira "></i>更新
         </router-link>
 
