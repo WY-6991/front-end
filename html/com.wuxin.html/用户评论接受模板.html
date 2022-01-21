@@ -109,8 +109,15 @@
 					background-position: 0% 50%;
 				}
 			}
+			
+			.contents::before{
+				content: "《";
+			}
+			.contents::after{
+				content: "》";
+			}
 
-			.link>a:hover {}
+			
 
 			.poetry {
 				text-align: center;
@@ -129,7 +136,7 @@
 	</head>
 	<body>
 		<div class="container">
-			<!-- <div class="image"></div> -->
+			<div class="image"></div>
 
 			<div class="main">
 				<p style="margin-top: 20px;">用户<span style="color: teal;">username</span> 你的评论有了新的回复</p>
@@ -197,7 +204,7 @@
 						<path d="M240.576729 266.239713l101.595886 0 0 55.709813-101.595886 0 0-55.709813Z" p-id="20251"
 							fill="#cdcdcd"></path>
 					</svg>
-					<span class="item">《Hello,树先生！》</span>
+					<span class="item contents">Hello,树先生！</span>
 				</p>
 
 
@@ -215,7 +222,7 @@
 					江畔何人初见月？江月何年初照人？
 				</p>
 				<p>
-					张若虚-《春江花朝秋月夜》
+				 <span>张若虚</span>-<span class="contents">春江花朝秋月夜</span>
 				</p>
 			</div>
 			<div class="footer">
