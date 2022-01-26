@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>星空背景动画</title>
+
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+
+			.box {
+				position: fixed;
+				min-height: 100vh;
+				width: 100%;
+				background: radial-gradient(220% 110% at top center, #1b2847 10%, #75517d 50%, #e96f92 65%);
+				animation: welcomeAnimation 500ms ease;
+				z-index: 10;
+			}
+
+
+
+			.moon {
+				position: fixed;
+				width: 100px;
+				height: 100px;
+				cursor: pointer;
+				background: #EEEE00;
+				border-radius: 50%;
+				top: 100px;
+				right: 100px;
+				/* 添加盒子阴影 */
+				box-sizing: border-box;
+				box-shadow: 1px 1px 2px #EEEE00, 1px 1px 20px #EEEE00, 1px 1px 30px #EEEE00;
+			}
+
+			.moon:hover {
+				box-shadow: 1px 1px 2px #EEEE00, 1px 1px 20px #EEEE00, 1px 1px 30px #EEEE00, 2px 2px 40px #EEEE00;
+			}
+
+
+
+			.stars {
+				position: absolute;
+				transform: perspective(500px);
+				transform-style: preserve-3d;
+				left: 50%;
+				bottom: 0;
+				z-index: 20;
+				perspective-origin: 50% 100%;
+				animation: rotate 80s infinite linear;
+			}
+
+			.star {
+				position: absolute;
+				width: 2px;
+				height: 2px;
+				background: #f7f7b8;
+				left: 0;
+				top: 0;
+				backface-visibility: hidden;
+				z-index: 30;
+
+			}
+
+			.text {
+				position: absolute;
+				top: 40%;
+				left: 50%;
+				font-size: 16px;
+				color: #FFFF00;
+				/* 文字水平居中 */
+				transform: translate(-50%, -50%) scale(2, 2);
+				/* 添加字体阴影效果 */
+				text-shadow: 1px 1px 19px #EEEE00;
+				text-rendering: geometricprecision;
+
+			}
+
+
+
+
+
+			/*页面加载下滑出现动画*/
+			@keyframes welcomeAnimation {
+				0% {
+					opacity: 0.8;
+					filter: alpha(opacity=0);
+					transform: translateY(-50px);
+				}
+
+				100% {
+					opacity: 1;
+					-webkit-filter: none;
+					filter: none;
+					transform: translateY(0);
+				}
+			}
+
+
+			/*星空动画*/
+			@keyframes rotate {
+				0% {
+					transform: perspective(400px) rotateZ(20deg) rotateX(-40deg) rotateY(0);
+				}
+
+				100% {
+					transform: perspective(400px) rotateZ(20deg) rotateX(-40deg) rotateY(-360deg);
+				}
+			}
+		</style>
+	</head>
+
+
+	<body>
+
+		<div class="box">
+			<!-- 月亮 -->
+			<div class="moon"></div>
+			<!-- 星空 -->
+			<div class="stars"> </div>
+			<!-- 文字 -->
+			<div class="text">
+				举头望明月,低头思故乡
+			</div>
+		</div>
+
+
+		<script type="text/javascript">
+			const startCount = 1000;
+			const distance = 800
+
+			// 星星容器
+			let stars = document.querySelector('.stars')
+
+			// 添加dom节点
+			for (var i = 0; i < startCount; i++) {
+				var div = document.createElement('div')
+				div.classList = 'star'
+				stars.appendChild(div)
+
+				// 添加动画效果
+				let speed = 0.1 + (Math.random());
+				let thisDistance = distance + (Math.random() * 300);
+				div.style.transformOrigin = `0 0 ${thisDistance}px`;
+				div.style.transform =
+					`
+				  translate3d(0,0,-${thisDistance}px)
+				  rotateY(${Math.random() * 360}deg)
+				  rotateX(${Math.random() * (-50)}deg)
+				  scale(${speed})
+				  `
+			}
+
+
+			// 根据当前时间判断是否显示当前月亮
+			// 时间只在夜晚显示
+			let now = new Date()
+		</script>
+
+	</body>
+</html>
