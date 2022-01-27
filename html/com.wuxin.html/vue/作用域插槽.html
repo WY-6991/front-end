@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+
+		<div class="container" id="app">
+
+			<h3>使用普通插槽显示用户名</h3>
+			<compontent-a :user="user"></compontent-a>
+			<hr>
+
+			<h3 style="color: red;"> 现在要求显示出用户年龄，很显然使用普通插槽是无法显示的，只能修改原来插槽内容</h3>
+			<h3 style="color: red;"> 作用域插槽因此诞生，只提供插槽模板,不提供显示内容</h3>
+			<hr>
+
+			<!-- 显示名字 -->
+			<h4>显示名字</h4>
+			<compontent-b>
+				<template v-slot:default="ww">
+					{{ user.name }}
+				</template>
+			</compontent-b>
+			<compontent-b>
+				<template v-slot="ww">
+					{{ user.name }}
+				</template>
+			</compontent-b>
+			<!-- 显示年龄 -->
+			<h4>显示年龄</h4>
+			<compontent-b>
+				<template v-slot:default="aa">
+					{{ user.age }}
+				</template>
+			</compontent-b>
+
+
+			<compontent-b>
+				<template v-slot="aa">
+					{{ user.age }}
+				</template>
+			</compontent-b>
+
+			<compontent-b v-slot:default="aa">
+				{{user.age }}
+			</compontent-b>
+
+			<compontent-b v-slot="aa">
+				{{user.age }}
+			</compontent-b>
+			<compontent-b v-slot="aa111">
+				{{user}}
+			</compontent-b>
+			<compontent-b v-slot="{user:person}">
+				{{person.age}}
+			</compontent-b>
+			
+			
+
+
+
+		</div>
+
+		<template id="slot1">
+			<div>
+				<slot>
+					<span>{{user.name}}</span>
+				</slot>
+			</div>
+		</template>
+
+		<template id="slot2">
+			<div>
+				<slot v-bind:user="user">
+					<span>
+						{{user.name}}
+					</span>
+				</slot>
+			</div>
+		</template>
+
+		<script type="text/javascript">
+			let CompontentA = {
+				props: ['user'],
+				template: '#slot1'
+			}
+
+
+			let CompontentB = {
+				props: ['user'],
+				template: '#slot2'
+			}
+
+
+			new Vue({
+				el: '#app',
+				data: {
+					user: {
+						name: 'admin',
+						age: 10
+					}
+				},
+				components: {
+					CompontentA,
+					CompontentB
+				}
+			})
+		</script>
+	</body>
+</html>
