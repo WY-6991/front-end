@@ -16,6 +16,7 @@
             width: 500px;
             height: 44px;
             font-size: 30px;
+            margin: 10px;
         }
 
 
@@ -34,18 +35,36 @@
 <body>
 
     <div id="box">
-        <h2>键盘触发对应编码：
+        <h2>
+            输入的内容对应键盘编码：
             <span style="color: yellowgreen;">
                 {{keyCode1}}
             </span>
+            对应键盘名:
+            <span style="color: yellowgreen;">
+                {{name}}
+            </span>
         </h2>
-        <input v-model="value1" type="text" @keyup=showInfo($event) placeholder="请输入内容..." />
+        <input v-model="value1" type="text" @keyup=showInfo($event) placeholder="请输入内容查看键盘对应键位编码..." />
+        
         <!-- 1、添加键盘enter事件 -->
+        <!-- 以编码形式触发事件 -->
+        <input v-model="value2" type="text" @keyup.13="enterEvent" placeholder="按下enter激活事件 " />
+        <!-- 以按键名称触发事件 -->
         <input v-model="value2" type="text" @keyup.enter="enterEvent" placeholder="按下enter激活事件 " />
+
         <!-- 2、添加键盘back事件 -->
         <input v-model="value3" type="text" @keyup.delete="backEvent" placeholder="按下backbase激活事件 " />
+        <input v-model="value3" type="text" @keyup.Backspace="backEvent" placeholder="按下backbase激活事件 " />
+
         <!-- 3、自定义键盘绑定事件 -->
         <input v-model="value4" type="text" @keyup="myEvent($event)" placeholder="自定义键盘事件按下1激活事件 " />
+
+        <!-- 4、组合键盘名字触发事件 大小写 以及使用短横线才能触发 -->
+        <!-- 不能触发事件 -->
+        <!-- <input v-model="value5" type="text" @keyup.CapsLock="capsLockEvent" placeholder="CapsLock 键位触发  " /> -->
+        <!-- 能够触发事件 -->
+        <input v-model="value5" type="text" @keyup.caps-lock="capsLockEvent" placeholder="CapsLock 键位触发  " />
 
 
     </div>
@@ -72,18 +91,20 @@
             el: '#box',
             data: {
                 keyCode1: '',
+                name: '',
                 value1: '',
                 value2: '',
                 value3: '',
-                value4: ''
+                value4: '',
+                value5: ''
             },
             methods: {
 
                 showInfo(e) {
                     console.log('e.key :>> ', e.key, e.keyCode);
                     this.keyCode1 = e.keyCode
+                    this.name = e.key
                 },
-
 
                 enterEvent() {
                     confirm('你好我是enter键盘绑定事件！按下enter你就能看到我了！')
@@ -93,13 +114,18 @@
                     confirm('你好我是back键盘绑定事件！按下back你就能看到我了！')
                 },
 
-                // 自定义键盘事件
+                // 自定义键盘事件 按下数字1触发
                 myEvent(e) {
+                    // 数字1对应键盘编码是49
                     if (e.keyCode === 49) {
                         confirm('你好我是自定义键盘键盘绑定事件！按下1你就能看到我了！')
                     }
+                },
 
 
+                // 自定义键盘事件
+                capsLockEvent() {
+                    confirm('你好我是自定义键盘键盘绑定事件！按下CapsLock你就能看到我了！')
                 }
 
             },
