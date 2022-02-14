@@ -13,11 +13,13 @@
         {{message}}---{{count}}
         <button type="button" @click="count++">add</button>
         {{count}}
-
-
         <span v-fbind="count"></span>
-
-
+        <h1>
+            {{Date.now()}}
+        </h1>
+        <h1>
+            {{new Date()}} ---{{typeof('vue')}}
+        </h1>
         <div class="test-refs" ref="box_form">
             <h2>{{refs}}</h2>
         </div>
@@ -62,13 +64,15 @@
                     $div.style.background = 'red'
                 },
 
-                test(){
+                test() {
                     alert('hello')
                 }
             },
             mounted() {
                 this.initData()
-
+                // 通过内部方式添加vm
+                console.log(this)
+                // this.$set()
             },
 
         })
@@ -93,9 +97,16 @@
         vm.$data.message = "我是修改之后vue之后属性"
         console.log('vm.$data.message 修改之后:>> ', vm.$data.message);
 
-        // 通过外部方式给data添加一个属性例子
-        
+        //  $data:1、通过外部方式给data添加一个属性例子
+        /*  通过这种方式虽然可以输出，但是在容器中是访问不到的*/
+        // vm.$data.hello = 'hello new data'
+        // console.log('vm.$data.message 修改之后:>> ', vm.$data.hello);
 
+        // $data中如果外部需要添加属性 需要通过set 这个方法添加属性
+        console.log('vm.data', vm.$data)
+        console.log('vm.$set', vm.$set)
+
+        // vm.$set(vm,'vue','add new')
     </script>
 
 </body>

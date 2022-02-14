@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>键盘事件</title>
+    <script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        input {
+            width: 500px;
+            height: 44px;
+            font-size: 30px;
+        }
+
+
+        input::placeholder {
+
+            font-size: 30px;
+            color: red;
+        }
+
+        /* input::value {
+            font-size: 22px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div id="box">
+        <h2>键盘触发对应编码：
+            <span style="color: yellowgreen;">
+                {{keyCode1}}
+            </span>
+        </h2>
+        <input v-model="value1" type="text" @keyup=showInfo($event) placeholder="请输入内容..." />
+        <!-- 1、添加键盘enter事件 -->
+        <input v-model="value2" type="text" @keyup.enter="enterEvent" placeholder="按下enter激活事件 " />
+        <!-- 2、添加键盘back事件 -->
+        <input v-model="value3" type="text" @keyup.delete="backEvent" placeholder="按下backbase激活事件 " />
+        <!-- 3、自定义键盘绑定事件 -->
+        <input v-model="value4" type="text" @keyup="myEvent($event)" placeholder="自定义键盘事件按下1激活事件 " />
+
+
+    </div>
+
+    <script type="text/javascript">
+
+        // @keydown 键盘按下时触发
+        // @keypress 键盘按住时触发
+        // @keyup 键盘弹起
+        // @keyup.13     按回车键
+        // @keyup.enter 回车
+        // @keyup.up    上键
+        // @keyup.down  下键
+        // @keyup.left     左键
+        // @keyup.right    右键
+        // @keyup.delete    删除键
+
+        // 获取按键的键码 e.keyCode
+        // 关闭vue configtip提示
+
+        Vue.config.productionTip = false
+
+        const vm = new Vue({
+            el: '#box',
+            data: {
+                keyCode1: '',
+                value1: '',
+                value2: '',
+                value3: '',
+                value4: ''
+            },
+            methods: {
+
+                showInfo(e) {
+                    console.log('e.key :>> ', e.key, e.keyCode);
+                    this.keyCode1 = e.keyCode
+                },
+
+
+                enterEvent() {
+                    confirm('你好我是enter键盘绑定事件！按下enter你就能看到我了！')
+                },
+
+                backEvent() {
+                    confirm('你好我是back键盘绑定事件！按下back你就能看到我了！')
+                },
+
+                // 自定义键盘事件
+                myEvent(e) {
+                    if (e.keyCode === 49) {
+                        confirm('你好我是自定义键盘键盘绑定事件！按下1你就能看到我了！')
+                    }
+
+
+                }
+
+            },
+
+        })
+    </script>
+
+</body>
+
+</html>

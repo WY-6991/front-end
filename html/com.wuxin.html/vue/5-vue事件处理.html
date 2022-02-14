@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>事件处理</title>
+    <script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+
+    <div id="box">
+
+        <!-- @click执行vue中method中的方法 -->
+        <button @click="showMessage"> 点我提示信息 </button>
+
+        <!-- 简单的事件绑定 -->
+        <h2>vue双向绑定
+            <span style="color:red;">
+                {{message}}
+            </span>
+        </h2>
+        <input v-model="message" type="text" />
+
+        <br>
+        <!-- 使用关键词prevent阻止事件冒泡执行 -->
+        <a href="https://www.baidu.com" @click.prevent="showMessage"> vue阻止事件冒泡执行</a>
+
+        <br>
+        <!-- 使用关键词prevent阻止事件冒泡执行.once执行一次 -->
+        <a href="https://www.baidu.com" @click.prevent.once="showMessage"> vue阻止事件冒泡执行,使用once表示该事件只执行一次</a>
+    </div>
+
+    <script type="text/javascript">
+        // 关闭vue configtip提示
+        Vue.config.productionTip = false
+
+        const vm = new Vue({
+            el: '#box',
+            data: {
+                message: 'hello vue',
+            },
+            created() {
+                this.test1()
+                this.test2()
+            },
+            methods: {
+                showMessage() {
+                    confirm('欢迎来学习vue实例')
+                },
+
+                test1(e) {
+                    console.log(e)
+                },
+                test2() {
+                    console.log(this)
+                }
+            },
+        })
+    </script>
+
+</body>
+
+</html>
