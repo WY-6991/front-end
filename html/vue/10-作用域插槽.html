@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+
+	<div class="container" id="app">
+		<h3>使用普通插槽显示用户名</h3>
+		<compontent-a :user="user"></compontent-a>
+		<hr>
+
+		<h3 style="color: red;"> 现在要求显示出用户年龄，很显然使用普通插槽是无法显示的，只能修改原来插槽内容</h3>
+		<h3 style="color: red;"> 作用域插槽因此诞生，只提供插槽模板,不提供显示内容</h3>
+		<hr>
+
+		<!-- 显示名字 -->
+		<h4>显示名字</h4>
+		<compontent-b>
+			<template v-slot:default="ww">
+				{{ user.name }}
+			</template>
+		</compontent-b>
+		<compontent-b>
+			<template v-slot="ww">
+				{{ user.name }}
+			</template>
+		</compontent-b>
+		<!-- 显示年龄 -->
+		<h4>显示年龄</h4>
+		<compontent-b>
+			<template v-slot:default="aa">
+				{{ user.age }}
+			</template>
+		</compontent-b>
+		<compontent-b>
+			<template v-slot="aa">
+				{{ user.age }}
+			</template>
+		</compontent-b>
+		<compontent-b v-slot:default="aa">
+			{{user.age }}
+		</compontent-b>
+		<compontent-b v-slot="aa111">
+			{{user}}
+		</compontent-b>
+
+		<compontent-c>
+		</compontent-c>
+		<compontent-c>
+			<template v-slot:default="slotProps">
+				{{ slotProps }}
+			</template>
+		</compontent-c>
+		<compontent-c>
+			<template v-slot:default="{person}">
+				{{person}}
+			</template>
+		</compontent-c>
+		<compontent-c :person="person">
+			<template v-slot:default="{person}">
+				{{person.username}}
+			</template>
+		</compontent-c>
+
+
+
+		<compontent-d></compontent-d>
+
+		<compontent-d>
+			<template v-slot:default="name">
+				{{name}}
+			</template>
+		</compontent-d>
+		<compontent-d>
+			<template v-slot:default="name">
+				{{name.person.age}}
+			</template>
+		</compontent-d>
+
+		<compontent-d>
+			<template v-slot:default="name">
+				{{name.person}}
+			</template>
+		</compontent-d>
+
+
+	</div>
+
+	<template id="slot1">
+		<div>
+			<slot>
+				<span>{{user.name}}</span>
+			</slot>
+		</div>
+	</template>
+
+	<template id="slot2">
+		<div>
+			<slot v-bind:user="user">
+				<span>
+					{{user.name}}
+				</span>
+			</slot>
+		</div>
+	</template>
+	<template id="slot3">
+		<div>
+			<h2 style="color: aqua;">
+				{{message}}
+			</h2>
+			<hr>
+			<h2>
+				现在要将插槽3中内容显示为用户名不显示用户age
+			</h2>
+			<slot v-bind:person="person">
+				{{person.age}}
+			</slot>
+		</div>
+	</template>
+
+	<template id="slot4">
+		<div>
+			<h2 style="color: royalblue;">
+				{{message}}-----{{person}}
+			</h2>
+			<hr>
+			<h2>
+				现在要将插槽4中内容显示为用户名不显示用户age
+			</h2>
+			<slot :person="person">
+				{{person.age}}
+			</slot>
+		</div>
+	</template>
+
+
+	<script type="text/javascript">
+
+
+		let CompontentA = {
+			props: ['user'],
+			template: '#slot1'
+		}
+
+
+		let CompontentB = {
+			props: ['user'],
+			template: '#slot2'
+		}
+
+		const CompontentC = {
+			data() {
+				return {
+					message: "插槽3"
+				}
+			},
+			props: {
+				person: {
+					type: Object,
+					default: () => {
+						return {
+							'username': 'slot3',
+							'age': '24'
+						}
+					}
+				},
+			},
+			created() {
+				console.log('vm.compontent', this);
+			},
+			template: '#slot3'
+		}
+
+		const CompontentD = {
+			data() {
+				return {
+					message: "插槽4",
+					person: {
+						'username': 'slot4',
+						'age': '26'
+					}
+				}
+			},
+			template: '#slot4'
+		}
+
+
+		new Vue({
+			el: '#app',
+			data: {
+				user: {
+					name: 'admin',
+					age: 10
+				},
+				person: {
+					'username': 'wuxin001root',
+					'age': '30',
+					'school': '大学名称'
+				}
+			},
+			components: {
+				CompontentA,
+				CompontentB,
+				CompontentC,
+				CompontentD
+			},
+			created() {
+				console.log('vm :>> ', this);;
+			},
+		})
+	</script>
+</body>
+
+</html>

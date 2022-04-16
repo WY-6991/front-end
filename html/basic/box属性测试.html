@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>box模型属性测试</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			body {
+				width: 100%;
+				height: 100vh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.box {
+				display: flex;
+				flex-direction: column;
+				width: 600px;
+				height: 600px;
+				/*  盒子模型阴影 */
+				box-shadow: 0px 0px 19px 1px rgba(0, 0, 255, .2);
+
+			}
+			ul>li{
+				list-style: none;
+			}
+			.item{
+				margin: 20px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 6.25rem;
+				height: 6.25rem;
+			}
+			
+			.item1{
+				/* x偏移量y轴偏移量 模糊半径和扩散半径  颜色*/
+				box-shadow: 2px 2px rgba(0,0,255,.2);
+			}
+			
+			.item2{
+				/* x偏移量y轴偏移量 模糊半径和扩散半径  颜色*/
+				box-shadow: inset 1em 1em gold;
+			}
+			
+			
+				.item3{
+				/* x偏移量y轴偏移量 模糊半径和扩散半径  颜色*/
+				box-shadow: 3px 3px red, -1em 0 .4em olive;
+			}
+			
+			
+			
+			
+		</style>
+	</head>
+	<body>
+
+		<!-- CSS box-shadow 属性用于在元素的框架上添加阴影效果。你可以在同一个元素上设置多个阴影效果，并用逗号将他们分隔开。该属性可设置的值包括阴影的X轴偏移量、Y轴偏移量、模糊半径、扩散半径和颜色。 -->
+
+		<div class="box">
+
+			<ul>
+				<li class="item item1">1</li>
+				<li class="item item2">2</li>
+				<li class="item item3">3</li>
+				<!-- <li class="item item4">4</li>
+				<li class="item item5">5</li>
+				<li class="item item6">6</li> -->
+			</ul>
+
+		</div>
+
+	</body>
+</html>

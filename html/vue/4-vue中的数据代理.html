@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>vue中数据代理</title>
+    <script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+
+    <div id="box">
+        <h1>{{message}}</h1>
+        <h1>{{schoolName}}</h1>
+    </div>
+
+    <script type="text/javascript">
+        // 关闭vue生产提示
+        Vue.config.productionTip = false
+
+        const vm = new Vue({
+            el: '#box',
+            data: {
+                message: 'hello vue',
+                schoolName: '学校名称'
+            }
+        })
+
+
+        vm.$data.message = "message修改了"
+
+        console.log(vm.$data)
+        console.log(vm._data)
+        console.log(vm.$data === vm._data)
+
+        vm.message = 'message 可以通过vm.message直接修改'
+        vm.schoolName = 'schoolName 可以通过vm.schoolName'
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>基本动画效果</title>
+		<style>
+			* {
+				margin: 0;
+				padding: -0;
+			}
+
+			.box {
+				position: relative;
+				width: 100%;
+				/* height: 100%; */
+				min-height: 100vh;
+				background-color: orchid;
+			}
+
+
+			@keyframes slidein {
+				from {
+					offset-distance: 0%;
+				}
+
+				to {
+					offset-distance: 100%;
+				}
+
+			}
+
+			.ani {
+
+				width: 6.25rem;
+				height: 6.25rem;
+				background-color: white;
+				/* 添加动画效果 */
+				/* animation: slidein 3s linear 1s; */
+				/* offset: path("M 100 100 L 300 100 L 400 600 z") auto; */
+				animation: move 1s linear infinite;
+
+			}
+
+			.polling_message {
+				color: white;
+				float: left;
+				margin-right: 2%;
+			}
+
+			.view_port {
+				background-color: black;
+				height: 25px;
+				width: 100%;
+				overflow: hidden;
+			}
+
+			.cylon_eye {
+				background-color: red;
+				background-image: linear-gradient(to right,
+						rgba(0, 0, 0, .9) 25%,
+						rgba(0, 0, 0, .1) 50%,
+						rgba(0, 0, 0, .9) 75%);
+				color: white;
+				min-height: 100vh;
+				/* height: 100vh; */
+				width: 100%;
+
+				-webkit-animation: 1s linear 0s infinite alternate move_eye;
+				animation: 1s linear 0s infinite alternate move_eye;
+			}
+
+			@-webkit-keyframes move_eye {
+				from {
+					margin-left: -20%;
+				}
+
+				to {
+					margin-left: 100%;
+				}
+			}
+
+			@keyframes move_eye {
+
+				/* 从哪里出来 */
+				/* 		from {
+					margin-left: -20%;
+				} */
+
+				/* 从哪里结束 */
+				/* 		to {
+					margin-left: 100%;
+				}
+			 */
+
+
+				from {
+					/* transform: translateY(0%); */
+					margin-left: -20%;
+				}
+
+				to {
+					/* transform: translateY(100%); */
+					margin-left: 100%;
+				}
+
+				/* 
+				0% {
+					top: 0;
+					left: 0;
+				}
+
+				30% {
+					top: 50px;
+				}
+
+				68%,
+				72% {
+					left: 50px;
+				}
+
+				100% {
+					top: 100px;
+					left: 100%;
+				} */
+			}
+			
+			.test1{
+				animation-name: example;
+				animation-duration: 3s;
+				animation-iteration-count: infinite;
+				width: 100px;
+				height: 100px;
+			}
+			
+			/* 动画代码 */
+			@keyframes example {
+				0%{
+					background-color:red;
+				}
+				
+				10%{
+					background-color:red;
+				}
+				
+				
+				20%{
+					background-color:green;
+				}
+				
+				40%{
+					background-color:skyblue;
+				}
+				
+				60%{
+					background-color:blue;
+				}
+				
+				
+				100%{
+					background-color:yellow;
+				}
+			}
+			
+			.tv{
+				width: 100px;
+				height: 100px;
+				animation: 20s linear 0s infinite alternate tv;
+			}
+			
+			@keyframes tv{
+				0%{
+					background-image: url(img/1.svg);
+				}
+				10%{
+					background-image: url(img/2.svg);
+				}
+				20%{
+					background-image: url(img/3.svg);
+				}
+				30%{
+					background-image: url(img/4.svg);
+				}
+				40%{
+					background-image: url(img/5.svg);
+				}
+				50%{
+					background-image: url(img/6.svg);
+				}
+				60%{
+					background-image: url(img/7.svg);
+				}
+				70%{
+					background-image: url(img/8.svg);
+				}
+				80%{
+					background-image: url(img/9.svg);
+				}
+				90%{
+					background-image: url(img/10.svg);
+				}
+				100%{
+					background-image: url(img/11.svg);
+				}
+			}
+			
+			
+		</style>
+	</head>
+
+	<body>
+
+		<div class="box">
+
+			<div class="ani"></div>
+			<div class="view_port">
+				<div class="polling_message">
+					Listening for dispatches
+				</div>
+				<div class="cylon_eye"></div>
+			</div>
+			<div class="test1">
+				
+			</div>
+			
+			<div class="tv"></div>
+
+
+		</div>
+		
+	
+	</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>仿淘宝侧边栏实现</title>
+		<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		
+		
+		.nav{
+			width: 100%;
+			height: 44px;
+			background-color: #FFA500;
+		}
+		.header,.content,.main,.footer{
+			width: 90%;
+			font-size: 30px;
+			font-weight: 700;
+			text-align: center;
+		}
+		
+		.header{
+			height: 200px;
+			background-color: #87CEEB;
+		}
+		
+		.content{
+			height: 400px;
+			background-color: green;
+			
+		}
+		
+		.main{
+			height: 2000px;
+			background-color: orange;
+		}
+		
+		.footer{
+			height: 200px;
+			color: #fff;
+			background-color: #000000;
+		}
+		
+		.sidebar{
+			width: 100px;
+			height: 300px;
+			background-color: skyblue;
+			position: absolute;
+			right: 0;
+			text-align: center;
+			top: 350px;
+		}
+		
+		.contents{
+			width: 100%;
+			height: 100%;
+			font-size: 1.25rem;
+			color: #FFFFFF;
+			background-color: #000fff;
+		}
+		
+		.go-back{
+			display: none;
+			background-color: #999;
+			height: auto;
+			color: #ffffff;
+		}
+		
+		.go-back-label{
+			line-height: 22px;
+			font-weight: 1000;
+			font-size: 20px;
+			cursor: pointer;
+		}
+		</style>
+	</head>
+	<body>
+		
+		<div class="nav">nav</div>
+		
+		<div class="header">
+			header
+		</div>
+		<div class="content">content</div>
+		<div class="main">main</div>
+		
+		<div class="footer">footer</div>
+		
+		<div class="sidebar">
+			<div class="contents">侧边栏菜单</div>
+			<div class="go-back">
+				<div class="go-back-label">^</div>
+				<div class="go-back-text">返回顶部</div>
+			</div>
+		</div>
+		
+		
+		<script type="text/javascript">
+			let content = document.querySelector('.content')
+			let main = document.querySelector('.main')
+			let sidebar = document.querySelector('.sidebar')
+			let go_back = document.querySelector('.go-back')
+			
+			console.log(content.offsetHeight);
+			console.log(content.scrollHeight);
+			console.log(content.offsetTop);
+			
+			// 获取content部分距离顶部高度
+			let contentTop = content.offsetTop
+			
+			// 获取侧边栏距离顶部距离
+			let sidebatTop = sidebar.offsetTop
+			console.log(sidebatTop);
+			
+			// 侧边栏距离main距离
+			let r = sidebatTop - contentTop
+			console.log(r);
+			
+			let mainTop = main.offsetTop
+			console.log(mainTop);
+			
+			// 添加页面滑动监听事件
+			document.addEventListener('scroll',function(e){
+				console.log(window.pageYOffset)
+				// 判断滑动距离
+				if(window.pageYOffset>=contentTop){
+					sidebar.style.position = 'fixed'
+					// 重新设置一个顶部距离是为了防止抖动问题
+					sidebar.style.top = r + 'px'
+				}else{
+					// 如果小于原来距离恢复原样
+					sidebar.style.position = 'absolute'
+					sidebar.style.top = sidebatTop + 'px'
+				}
+				
+				
+				// 如果滑动距离超过了main距离顶部距离就显示返回顶部
+				if(window.pageYOffset >= mainTop){
+					go_back.style.display = 'block'
+				}else{
+					go_back.style.display = 'none'
+				}
+				
+			})
+			
+			// 添加返回顶部事件
+			go_back.addEventListener('click',function(){
+				// alert('hello')
+				// 1
+				// document.body.scrollTop = document.documentElement.scrollTop = 0;
+				// 2
+				window.scrollTo(0,0)
+				//  问题 ...
+				//  返回顶部一瞬间过快，添加动画
+			})
+		</script>
+	</body>
+</html>

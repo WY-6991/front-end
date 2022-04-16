@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+
+    <div id="box">
+        {{message}}---{{count}}
+        <button type="button" @click="count++">add</button>
+        {{count}}
+        <span v-fbind="count"></span>
+        <h1>
+            {{Date.now()}}
+        </h1>
+        <h1>
+            {{new Date()}} ---{{typeof('vue')}}
+        </h1>
+        <div class="test-refs" ref="box_form">
+            <h2>{{refs}}</h2>
+        </div>
+
+        <div class="test-refs" ref="vue-refs">
+            <h2>{{refs}}</h2>
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        // 关闭vue configtip提示
+
+
+        const vm = new Vue({
+            el: '#box',
+            data: {
+                message: 'hello vue',
+                count: 100,
+                refs: 'vue refs'
+            },
+            directives: {
+                fbind(element, bing) {
+                    // element.style.color = 'red'
+                    // bind = function(){
+                    // 	console.log('bind');
+                    // },
+                    // inserted(){
+                    // 	console.log('inserted');
+                    // },
+                    // update(){
+                    // 	console.log('update');
+                    // }
+                }
+            },
+
+            methods: {
+                initData() {
+                    console.log(this.$refs.box_form)
+                    // 通过ref获取属性标签 同时修改style样式
+                    const $div = this.$refs.box_form
+                    $div.style.background = 'red'
+                },
+
+                test() {
+                    alert('hello')
+                }
+            },
+            mounted() {
+                this.initData()
+                // 通过内部方式添加vm
+                console.log(this)
+                // this.$set()
+            },
+
+        })
+
+
+        console.log(vm)
+
+        // console.log('vm.$attr :>> ', vm.$el);
+        // console.log('vm.$root :>> ', vm.$root);
+        // console.log('vm.$data :>> ', vm.$data);
+
+        // console.log('vm._data.message :>> ', vm._data.message);
+        // console.log('vm :>> ', vm);
+
+
+        // 通过外部方式访问vue内部method方法
+        // vm.test()
+
+
+        // 通过外部方式修改data属性
+        console.log('vm.$data.message 修改之前:>> ', vm.$data.message);
+        vm.$data.message = "我是修改之后vue之后属性"
+        console.log('vm.$data.message 修改之后:>> ', vm.$data.message);
+
+        //  $data:1、通过外部方式给data添加一个属性例子
+        /*  通过这种方式虽然可以输出，但是在容器中是访问不到的*/
+        // vm.$data.hello = 'hello new data'
+        // console.log('vm.$data.message 修改之后:>> ', vm.$data.hello);
+
+        // $data中如果外部需要添加属性 需要通过set 这个方法添加属性
+        console.log('vm.data', vm.$data)
+        console.log('vm.$set', vm.$set)
+
+        // vm.$set(vm,'vue','add new')
+    </script>
+
+</body>
+
+</html>
