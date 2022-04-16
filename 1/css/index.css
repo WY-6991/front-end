@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    background-color: #1d1928;
+}
+
+.container {
+    position: relative;
+    width: 350px;
+    background-color: rgb(89, 158, 219);
+    height: 450px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 20px 20px 20px rgba(0, 0, 0, .6);
+}
+
+.container>form {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 250px;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1;
+}
+
+.container>h2 {
+    font-size: 40px;
+    letter-spacing: 5px;
+    color: #fff;
+    font-weight: 100;
+    text-shadow: 5px 5px 5px rgba(33, 45, 57, 0.3);
+    z-index: 1;
+}
+
+.item {
+    outline: none;
+    width: 250px;
+    border: none;
+    height: 40px;
+    color: #fff;
+    background: none;
+    border-bottom: 1px solid #fff;
+    font-size: 16px;
+    color: #fff;
+}
+
+.item::placeholder {
+    padding-left: 10px;
+    font-size: 16px;
+    color: #fff;
+}
+
+.sub {
+    margin-top: 20px;
+    width: 250px;
+    height: 40px;
+    border-radius: 20px;
+    background: none;
+    border: 1px solid #fff;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+/* 鼠标进入时动画 */
+.in {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: #cf455f;
+    transform: translate(-50%, -50%);
+    animation: in 0.5s ease-out forwards;
+}
+
+/* 鼠标离开时动画 */
+
+.out {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 1200px;
+    height: 1200px;
+    border-radius: 50%;
+    background: #cf455f;
+    transform: translate(-50%, -50%);
+    animation: out 0.5s ease-out forwards;
+    z-index: 0;
+}
+
+@keyframes in {
+
+    0% {
+
+        width: 0;
+        height: 0;
+
+    }
+
+    100% {
+        width: 1200px;
+        height: 1200px;
+    }
+
+}
+
+@keyframes out {
+    0% {
+        width: 1200px;
+        height: 1200px;
+    }
+
+    100% {
+        width: 0;
+        height: 0;
+    }
+
+}

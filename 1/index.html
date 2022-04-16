@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login-1</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js "></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Login</h2>
+        <form>
+            <input type="text" class="item" placeholder="账号">
+            <input type="password" class="item" placeholder="密码">
+            <input type="submit" class="sub" placeholder="密码">
+        </form>
+    </div>
+
+    <script>
+        const container = document.querySelector('.container')
+        console.log(container);
+
+
+        let isIn = true
+        let isOut = false
+
+        var span
+        container.addEventListener('mouseenter', (e) => {
+            if (isIn) {
+                // 获取鼠标进入是位置
+                let inX = e.clientX - e.target.offsetLeft;
+                let inY = e.clientY - e.target.offsetTop;
+                console.log('x', inX, 'y', e.clientY - e.target.offsetTop)
+
+                // 创建元素
+                let element = document.createElement('span')
+                element.style.left = inX + 'px'
+                element.style.top = inY + 'px'
+                container.appendChild(element)
+
+                // 创建元素
+                $('.container span').removeClass('out').addClass('in')
+
+                // 创建元素
+                span = document.querySelector('.container span')
+                isIn = false
+                isOut = true
+
+            }
+
+        })
+
+        container.addEventListener('mouseleave', (e) => {
+            if (isOut) {
+                // 获取鼠标进入是位置
+                let outX = e.clientX - e.target.offsetLeft;
+                let outY = e.clientY - e.target.offsetTop;
+                // console.log('x', inX, 'y', e.clientY - e.target.offsetTop)
+                // 添加和删除样式
+                $('.container span').removeClass('in').addClass('out')
+
+                $('.container .out').css({ 'left': outX + 'px', 'top': outY + 'px' })
+                // 创建元素
+                span = document.querySelector('.container span')
+
+                isOut = false
+                setTimeout(() => {
+                    container.removeChild(span)
+                    isIn = true
+                }, 500)
+
+            }
+
+        })
+
+    </script>
+
+</body>
+
+</html>
