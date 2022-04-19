@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>春夏秋冬</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(200deg, #dcf545, #ccdddd);
+        }
+
+        .container {
+            /* border: 1px solid red; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            cursor: pointer;
+            position: relative;
+            width: 240px;
+            height: 350px;
+            /* border: 1px solid red; */
+            margin: 10px;
+            display: flex;
+            align-items: flex-end;
+            border-radius: 10px;
+            text-align: center;
+            color: #f5f4f5;
+            /* 盒子阴影渐变 */
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1),
+                0 2px 2px rgba(0, 0, 0, 0.2),
+                0 4px 4px rgba(0, 0, 0, 0.2),
+                0 8px 8px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            /* 过渡效果 */
+            transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+
+        }
+
+
+        .card::before {
+            content: "";
+            width: 100%;
+            height: 110%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            /* background: url('./img/spring.png'); */
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 0 0;
+            /* 过渡效果 */
+            transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .card:nth-child(1):before {
+            background: url('./img/spring.png');
+        }
+
+        .card:nth-child(2):before {
+            background: url('./img/summer.png');
+        }
+
+        .card:nth-child(3):before {
+            background: url('./img/autumn.png');
+        }
+
+        .card:nth-child(4):before {
+            background: url('./img/winter.png');
+        }
+
+        .card::after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 200%;
+            background: linear-gradient(to bottom,
+                    rgba(0, 0, 0, 0) 0%,
+                    rgba(0, 0, 0, 0.45) 55,
+                    rgba(0, 0, 0, 0.7) 100%, );
+            position: absolute;
+            left: 0;
+            top: 0;
+            transform: translateY(0);
+            /* 过渡效果 */
+            transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+            overflow: hidden;
+        }
+
+        .card .content {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            padding: 16px 8px;
+            /* transform: translateY(50%); */
+            transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .content h2 {
+            font-size: 22px;
+            font-weight: bold;
+            top: 10px;
+            left: 0;
+        }
+
+        .content P {
+            font-size: 12px;
+            letter-spacing: 2px;
+            width: 80%;
+
+            color: #fff;
+            line-height: 30px;
+            margin-top: 25px;
+            /* 两端对齐 */
+            text-align: justify;
+        }
+
+        .content button {
+            opacity: 0.8;
+            cursor: pointer;
+            border: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 12px 24px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 25px;
+            border-radius: 20px;
+        }
+
+        .content button:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        /* 除了.content 除了 h2其他元素隐藏下移动 */
+        .card .content *:not(h2) {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: transform 1.7s cubic-bezier(0.19, 1, 0.22, 1) opacity 0.7s;
+        }
+
+        .card:hover {
+            align-items: center;
+            background-color: rgba(18, 66, 168, 0.2);
+        }
+
+        .card:hover::before {
+            transform: translateY(-5%);
+        }
+
+        .card:hover::after {
+            transform: translateY(-50%);
+        }
+
+        .card:hover .content *:not(h2) {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.2s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="card">
+            <div class="content">
+                <h2>春</h2>
+                <p>春季，含节气有立春、雨水、惊蛰、春分、清明、谷雨。春，代表着温暖、生长。春季，阴阳之气开始转变，万物随阳气上升而萌芽生长。</p>
+                <button>查看更多</button>
+            </div>
+
+        </div>
+        <div class="card">
+            <div class="content">
+                <h2>夏</h2>
+                <p>气温高是夏季最显著的气候特征，但因地域、干湿环境的不同，会产生炎热干燥或者湿热多雨的不同气候</p>
+                <button>查看更多</button>
+            </div>
+
+        </div>
+        <div class="card">
+            <div class="content">
+                <h2>秋</h2>
+                <p>进入秋季，意味着降雨、湿度等趋于下降或减少，在自然界中万物开始从繁茂成长趋向萧索成熟</p>
+                <button>查看更多</button>
+            </div>
+
+        </div>
+        <div class="card">
+            <div class="content">
+                <h2>冬</h2>
+                <p>冬天季节，生气闭蓄，万物进入休养、收藏状态。</p>
+                <button>查看更多</button>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手风琴圆角图片</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: beige;
+        }
+
+        .container {
+            width: 600px;
+            height: 400px;
+            position: relative;
+            /* border: 2px solid #000; */
+            overflow: hidden;
+        }
+
+        .item,
+        .container .img img,
+        .active {
+            height: 350px;
+        }
+
+        .container .img img {
+            width: 300px;
+            width: 50px;
+            border-radius: 50px;
+
+        }
+
+        .item {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            border-radius: 50px;
+            margin: auto 5px;
+            cursor: pointer;
+            /* animation: ina 1s ease forwards; */
+
+        }
+
+        .sub {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            bottom: 0;
+            width: 50px;
+            height: 50px;
+            background-color: rgb(21, 92, 65);
+            border-radius: 50%;
+        }
+
+        .sub .text {
+            display: none;
+        }
+
+
+
+        .active {
+            width: 300px;
+
+        }
+
+        .active .img img {
+            width: 300px;
+            animation: ani 1s ease forwards;
+        }
+
+        /* 添加动画 */
+        .ani {
+            animation: ani 1s ease forwards;
+        }
+
+        @keyframes ani {
+            from {
+                width: 50px;
+            }
+
+            to {
+                width: 300px;
+            }
+        }
+
+        @keyframes ina {
+            from {
+                width: 300px;
+            }
+
+            to {
+                width: 50px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="item active">
+            <div class="img">
+                <img src="./img/1.png" alt="">
+            </div>
+            <div class="sub">
+                <div class="text">这就是爱！</div>
+                <div class="icon"></div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="img">
+                <img src="./img/2.png" alt="">
+            </div>
+            <div class="sub">
+                <div class="text">这就是爱！</div>
+                <div class="icon"></div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="img">
+                <img src="./img/3.png" alt="">
+            </div>
+            <div class="sub">
+                <div class="text">这就是爱！</div>
+                <div class="icon"></div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="img">
+                <img src="./img/4.png" alt="">
+            </div>
+            <div class="sub">
+                <div class="text">这就是爱！</div>
+                <div class="icon"></div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="img">
+                <img src="./img/5.png" alt="">
+            </div>
+            <div class="sub">
+                <div class="text">这就是爱！</div>
+                <div class="icon"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // 获取所有标签
+        let items = document.querySelectorAll('.item')
+
+        // 遍历 添加点击事件
+        items.forEach(item => {
+            item.addEventListener('click', function () {
+
+                // 点击 遍历 添加元素
+                items.forEach(i => {
+                    i.className = "item"
+                })
+                // 给当前元素添加 active
+                item.className = 'item active'
+
+            })
+        })
+    </script>
+
+</body>
+
+</html>

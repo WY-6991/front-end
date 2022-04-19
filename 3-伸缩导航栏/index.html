@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Html-csss伸缩导航栏</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(200deg, #dddfff, #e9d6e0, #cccddd);
+        }
+
+        body,
+        .container,
+        ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            position: relative;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 50px;
+            width: 500px;
+        }
+
+        .container input {
+            width: 40px;
+            height: 40px;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        /* 选择复选框 ul width 350px 波浪线是同级选择器 */
+        .container input:checked~ul {
+            width: 350px;
+        }
+
+        .container input:checked~span:nth-child(2) {
+            top: calc(50%-2px);
+            transform: rotate(-45deg);
+            background-color: red;
+            /* 先执行top，后执行transform */
+            transition: top 0.3s ease-in-out, transform 0.3s ease-in-out 0.3s;
+        }
+
+
+        .container span {
+            position: absolute;
+            left: 25px;
+            width: 30px;
+            height: 4px;
+            top: calc(50% - 10px);
+            border-radius: 20px;
+            background-color: #999;
+            /* 解决复选框被span覆盖问题 */
+            pointer-events: none;
+        }
+
+
+
+
+        .container span:nth-child(3) {
+            top: calc(50% - 6px);
+        }
+
+        .container ul {
+            /* width: 0; */
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .container ul li {
+            margin: 0 20px;
+            list-style: none;
+        }
+
+        .container ul li a {
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 700;
+            color: tomato;
+
+        }
+
+        .container ul li a:hover {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <input type="checkbox">
+        <span></span>
+        <span></span>
+        <span></span>
+        <ul>
+            <li>
+                <a href="javaScript:void(0)">收藏</a>
+                <a href="javaScript:void(0)">关注</a>
+                <a href="javaScript:void(0)">点赞</a>
+                <a href="javaScript:void(0)">分享</a>
+            </li>
+        </ul>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transition-01</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #0000FF;
+            border-style: solid;
+            border-width: 1px;
+            display: block;
+        }
+
+        .item1 {
+            -webkit-transition: width 0.5s, height 0.5s,
+                background-color 0.5s, -webkit-transform 0.5s;
+            transition: width 0.5s, height 0.5s, background-color 0.5s, transform 0.5s;
+        }
+
+        .item1:hover {
+            background-color: #FFCCCC;
+            width: 200px;
+            height: 200px;
+            -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+        }
+
+
+
+        .item2 {
+            background-color: #0000FF;
+            -webkit-transition: all 1s;
+            transition: all 1s;
+        }
+
+        .item2:hover {
+            background-color: #FFCCCC;
+            width: 100px;
+            height: 100px;
+            -webkit-transform: translateX(100px);
+            transform: scale(2);
+        }
+
+        .item3 {
+            border-radius: 50%;
+            position: relative;
+            margin-left: 0;
+            background-color: red;
+            animation: itme3_color_change 5s ease infinite;
+
+        }
+
+        @keyframes itme3_color_change {
+            0% {
+                margin-left: 0;
+                opacity: 1;
+                transform: rotate(0deg);
+                background-color: tan;
+            }
+
+
+            50% {
+                margin-left: 100%;
+                opacity: 0.1;
+                transform: rotate(360deg);
+                background-color: turquoise;
+            }
+
+            100% {
+                transform: rotate(0deg);
+                margin-left: 0%;
+                opacity: 1;
+                background-color: tan;
+            }
+
+        }
+
+
+        .item4 {
+            transition: transform 1s, background-color 1s;
+        }
+
+        .item4:hover {
+            background-color: red;
+            transform: rotate(3500deg);
+            transition: transform linear 1s, background-color ease-in 1s;
+        }
+
+        .item5 {
+            background: linear-gradient(125deg, #333ddd, #fffddd, #ccffcc);
+            background-size: 300%;
+            background-position: top;
+        }
+
+        .item6 {
+            background: linear-gradient(200deg, #1eb6d4, #c43232, #2f3bdd, #097223, #1824c5);
+            width: 100%;
+            height: 100px;
+            background-size: 500%;
+            animation: bgAnimation 15s linear infinite;
+        }
+
+        @keyframes bgAnimation {
+            0% {
+                background: linear-gradient(200deg);
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background: linear-gradient(0deg);
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background: linear-gradient(200deg);
+                background-position: 0% 50%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!--  
+        https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions
+        CSS transitions 提供了一种在更改CSS属性时控制动画速度的方法。 其可以让属性变化成为一个持续一段时间的过程，
+        而不是立即生效的。比如，将一个元素的颜色从白色改为黑色，通常这个改变是立即生效的，使用 CSS transitions 
+        后该元素的颜色将逐渐从白色变为黑色，按照一定的曲线速率变化。这个过程可以自定义。
+        通常将两个状态之间的过渡称为隐式过渡（implicit transitions），因为开始与结束之间的状态由浏览器决定。
+        -->
+    <div class="box item1"> </div>
+    <hr>
+    <div class="box item2"> </div>
+    <hr>
+    <div class="box item3"> </div>
+    <hr>
+    <div class="box item4"> </div>
+    <hr>
+
+    <div class="box item5"> </div>
+    <hr>
+    <div class="item6">
+
+    </div>
+</body>
+
+</html>
