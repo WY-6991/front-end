@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="./css/login.css">
+</head>
+
+<body>
+    <div class="bg"></div>
+    <div class="container">
+        <h2>login</h2>
+        <div class="login">
+            <div class="item">
+                <input type="text" id="email" name="email" placeholder="邮箱">
+            </div>
+            <div class="item">
+                <input type="text" id="code" name="code" placeholder="验证码">
+            </div>
+
+            <div class="item">
+                <button style="width: 90%; border-radius: 20px;">登录</button>
+            </div>
+            <div class="item">
+                <a href="login.html">登录</a>
+                <a href="register.html">注册</a>
+            </div>
+
+
+        </div>
+    </div>
+    <script src="./js/jquery-3.1.1.min.js"></script>
+
+    <script>
+
+
+        $(function () {
+
+            $('button').eq(0).click(function () {
+                let email = $('#email').val().trim()
+                let password = $('#code').val().trim()
+                console.log(username, password)
+                if ((email.length > 2 && email.length < 15)) {
+
+                    //  login
+
+                } else {
+                    alert('邮箱长度不合法！请重新输入！')
+                }
+
+            })
+
+            $('button').eq(1).click(function () {
+                window.open("/register.html")
+            })
+
+        })
+
+    </script>
+</body>
+
+</html>

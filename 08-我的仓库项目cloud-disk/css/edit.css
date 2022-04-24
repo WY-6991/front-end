@@ -1,0 +1,114 @@
+:root {
+    --font-color: #fff;
+    --backgroud: none;
+    --border: none;
+    --border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.edit {
+    margin-top: 44px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.edit .edit-left {
+    width: 200px;
+    height: 150px;
+    background: #000;
+    padding: 10px;
+}
+
+
+.edit .edit-left:hover {
+    transform: translateY(-8px);
+    transition: transform 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+
+
+.edit .edit-left img {
+    width: 200px;
+    height: 150px;
+}
+
+.edit-right {
+    padding: 10px;
+}
+
+
+
+.edit select,
+.edit button,
+.edit input {
+    height: 36px;
+    outline: none;
+    font-size: 14px;
+    background: var(--backgroud);
+    border: var(--border);
+    color: var(--font-color);
+    cursor: pointer;
+}
+
+.edit input {
+    height: 36px;
+    width: 300px;
+    font-size: 16px;
+    padding: 0 10px;
+    border-bottom: var(--border-bottom);
+}
+
+.edit input::placeholder {
+    color: var(--font-color);
+}
+
+.resource input {
+    width: 80%;
+}
+
+.edit input:focus {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.edit select {
+    color: #fff;
+    outline: none;
+    padding: 10px;
+}
+
+.edit select option {
+    background-color: red;
+    background: none;
+    padding: 10px;
+    color: black;
+}
+
+
+
+.resource,
+.submit {
+    margin-top: 20px;
+}
+
+.submit {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.submit button {
+    margin: 0 5px;
+}
+
+.edit button {
+    width: 55px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5), -1px -1px 1px rgba(0, 0, 0, 0.5),
+        2px 2px 2px rgba(0, 0, 0, 0.2), -2px -2px 2px rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.edit button:hover {
+    width: 55px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5), -2px -2px 2px rgba(0, 0, 0, 0.5),
+        4px 4px 4px rgba(0, 0, 0, 0.2), -4px -4px 4px rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.5);
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册</title>
+    <link rel="stylesheet" href="./css/login.css">
+</head>
+
+<body>
+    <div class="bg"></div>
+    <div class="container" style="height: 400px;">
+        <h2 style="align-items: center; height: 20%;">
+            register
+        </h2>
+        <div class="login">
+            <div class="item">
+                <input type="text" id="username" name="username" placeholder="用户名">
+            </div>
+            <div class="item">
+                <input type="password" id="password" name="password" placeholder="密码">
+            </div>
+            <div class="item">
+                <input type="password" id="rePassword" name="rePassword" placeholder="密码">
+            </div>
+            <div class="item">
+                <input type="text" id="email" name="email" placeholder="邮箱">
+            </div>
+            <div class="item">
+                <input type="text" id="code" name="code" placeholder="验证码">
+            </div>
+            <div class="item">
+                <button style="width: 90%; margin: 10px auto;">登录</button>
+            </div>
+            <div class="item" style="margin-top: 10px;">
+                <a href="login.html">登录</a>
+                <a href="email.html">忘记密码</a>
+            </div>
+        </div>
+    </div>
+    <script src="./js/jquery-3.1.1.min.js"></script>
+
+    <script>
+
+
+        $(function () {
+            let isCode = false
+            $('button').eq(0).click(function () {
+                let username = $('#username').val().trim()
+                let password = $('#password').val().trim()
+                let rePassword = $('#rePassword').val().trim()
+                let email = $('#email').val().trim()
+                let code = $('#code').val().trim()
+                if (username.length < 2 || username.length > 15) {
+                    alert('用户名长度2-15')
+                    return;
+                }
+                if (password.length < 2 || password.length > 20) {
+                    alert('密码长度4-20')
+                    return;
+                }
+                if (rePassword != password) {
+                    alert('两次密码不一致！')
+                    return;
+                }
+
+                if (email.length < 2 || email.length > 15) {
+                    alert('邮箱格式不合法')
+                    return;
+                }
+
+                if (isCode) {
+                    // alert('login')
+                    alert('login 该功能还未开放！')
+                    $(this).text('获取验证码')
+                } else {
+                    isCode = !isCode
+                    alert('code 该功能还未开放！')
+                    $(this).text('登录')
+                }
+
+
+
+
+
+            })
+
+
+
+        })
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="./css/login.css">
+</head>
+
+<body>
+    <div class="bg"></div>
+    <div class="container">
+        <h2>login</h2>
+        <div class="login">
+            <div class="item">
+                <input type="text" id="username" name="username" placeholder="用户名">
+            </div>
+            <div class="item">
+                <input type="password" id="password" name="password" placeholder=" 密码">
+            </div>
+
+            <div class="item">
+                <button style="width: 90%; border-radius: 20px;">登录</button>
+            </div>
+            <div class="item">
+                <a href="register.html">注册</a>
+                <a href="email.html">忘记密码</a>
+            </div>
+
+
+        </div>
+    </div>
+    <script src="./js/jquery-3.1.1.min.js"></script>
+
+    <script>
+
+
+        $(function () {
+
+            $('button').eq(0).click(function () {
+                let username = $('#username').val().trim()
+                let password = $('#password').val().trim()
+                console.log(username, password)
+                if ((username.length > 2 && username.length < 15) &&
+                    (password.length > 4 && password.length < 15)) {
+
+                    //  login
+
+                } else {
+                    alert('用户名或密码长度不合法！请重新输入！')
+                }
+
+            })
+
+            $('button').eq(1).click(function () {
+                window.open("/register.html")
+            })
+
+        })
+
+    </script>
+</body>
+
+</html>

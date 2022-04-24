@@ -1,0 +1,45 @@
+.item {
+    position: relative;
+    width: 100%;
+    /* background-color: blue; */
+    display: flex;
+    justify-content: space-between;
+    color: #ffff;
+    align-items: center;
+    border-bottom: solid 1px rgba(255, 255, 255, 0.24);
+
+}
+
+
+
+.item .content,
+.item .do {
+    display: flex;
+    align-items: center;
+}
+
+.item .download {
+    cursor: pointer;
+}
+
+
+.item .content {
+    /* background-color: orange; */
+    padding: 10px;
+    font-size: 14px;
+    /* 文字溢出隐藏 */
+    overflow: hidden;
+    /* 超过部分省略号表示 */
+    text-overflow: ellipsis;
+    /* 不换行 */
+    white-space: nowrap;
+}
+
+.item .content svg {
+    cursor: pointer;
+    margin: auto 5px;
+}
+
+.item .download {
+    cursor: pointer;
+}

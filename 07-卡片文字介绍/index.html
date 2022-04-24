@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>图片悬浮文字介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 100vh;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        .container {
+            width: 100%;
+            height: 100vh;
+        }
+
+        .container ul {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+
+        .container ul li {
+            margin: 10px auto;
+            width: 400px;
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .container p {
+            color: black;
+            font-size: 12px;
+            font-weight: 500;
+            /* transform: translateY(100px); */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <ul>
+            <li>
+                <a href="JavaScript:void(0)">
+                    <img src="/img/1.png" alt="">
+                    <p>这是一段内容介绍 <span>keywords</span></p>
+                </a>
+            </li>
+
+            <li>
+                <a href="JavaScript:void(0)">
+                    <img src="/img/1.png" alt="">
+                    <p>这是一段内容介绍 <span>keywords</span></p>
+                </a>
+            </li>
+            <li>
+                <a href="JavaScript:void(0)">
+                    <img src="/img/1.png" alt="">
+                    <p>这是一段内容介绍 <span>keywords</span></p>
+                </a>
+            </li>
+            <li>
+                <a href="JavaScript:void(0)">
+                    <img src="/img/1.png" alt="">
+                    <p>这是一段内容介绍 <span>keywords</span></p>
+                </a>
+            </li>
+            <li>
+                <a href="JavaScript:void(0)">
+                    <img src="/img/1.png" alt="">
+                    <p>这是一段内容介绍 <span>keywords</span></p>
+                </a>
+            </li>
+            <li>
+                <a href="JavaScript:void(0)">
+                    <img src="/img/1.png" alt="">
+                    <p>这是一段内容介绍 <span>keywords</span></p>
+                </a>
+            </li>
+            <li>
+                <a href="JavaScript:void(0)">
+                    <img src="/img/1.png" alt="">
+                    <p>这是一段内容介绍 <span>keywords</span></p>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+
+    <script>
+        let lis = document.querySelectorAll('li')
+
+        lis.forEach(li => {
+            li.addEventListener('mouseenter', () => {
+                // alert('hello')
+
+            })
+            li.addEventListener('mouseleave', () => {
+                // alert('leave')
+            })
+        })
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/base.css">
+    <title>Index</title>
+</head>
+
+<body>
+    <div class="bg"></div>
+    <div class="container">
+        <h2>wuxin001 的仓库</h2>
+        <div class="nav">
+            <div class="left">
+                <div class="link">
+                    <a href="">首页</a>
+                </div>
+            </div>
+            <div class="right">
+                <div class="link">
+                    <a href="login.html">登录</a>
+                </div>
+                <div class="link">
+                    <a href="main.html">管理</a>
+                </div>
+            </div>
+        </div>
+        <div class="list">
+            <div class="card">
+                <a href="download.html">
+                    <img src="./img/bg1.jpg" alt="">
+                </a>
+                <p>这是一段内容介绍</p>
+            </div>
+            <div class="card">
+                <a href="download.html">
+                    <img src="./img/bg1.jpg" alt="">
+                </a>
+                <p>这是一段内容介绍</p>
+            </div>
+            <div class="card">
+                <a href="download.html">
+                    <img src="./img/bg1.jpg" alt="">
+                </a>
+                <p>这是一段内容介绍</p>
+            </div>
+            <div class="card">
+                <a href="download.html">
+                    <img src="./img/bg1.jpg" alt="">
+                </a>
+                <p>这是一段内容介绍</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/jquery-3.1.1.min.js"></script>
+    <script>
+        $(function () {
+            $('.card').hover(
+                function () {
+                    $(this).children('p').removeClass('card_leave').addClass('card_enter')
+                },
+                function () {
+                    $(this).children('p').removeClass('card_enter').addClass('card_leave')
+                }
+            )
+        })
+    </script>
+
+</body>
+
+</html>
