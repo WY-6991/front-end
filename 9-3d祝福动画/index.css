@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --margin-top: 0;
+    --margin-left: 0;
+    --animation-duration: 0s;
+    --animation-left: 0s;
+}
+
+
+body{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    overflow: hidden;
+    perspective: 1300px;
+
+}
+
+div{
+    transform-style: preserve-3d;
+}
+
+.word-box,
+.bowd-box .word{
+    position: absolute;
+    /* animation:; */
+}

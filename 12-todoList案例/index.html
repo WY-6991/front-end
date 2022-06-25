@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>todoList案例</title>
+
+		<style>
+			:root {
+				--active-width: 700px;
+				--input-width: 660px;
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			.btn {
+				font-size: 12px;
+				background: none;
+				border: none;
+				padding: 4px;
+				cursor: pointer;
+				background-color: #0055ff;
+				color: white;
+				margin: 1px;
+				border-radius: 5px;
+			}
+
+			.btn-text {
+				background: none;
+				color: #0000ff;
+			}
+
+			.btn-danger {
+				background-color: #ff007f;
+			}
+
+			.btn-warning {
+				background-color: #ff5500;
+			}
+
+			.btn-success {
+				background-color: #4eff2f;
+			}
+
+			.btn-primary {
+				background-color: #0055ff;
+			}
+
+			input {
+				margin: 10px;
+				height: 30px;
+				font-size: 16px;
+				outline: none;
+				border: rgba(0, 0, 0, 0.2) solid 1px;
+			}
+
+
+
+
+			.todolist {
+				height: 450px;
+				overflow: hidden;
+				margin: 100px auto;
+				width: var(--active-width);
+				position: relative;
+				border-radius: 10px;
+				font-size: 13px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: space-around;
+				box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1), -1px -1px 1px rgba(0, 0, 0, 0.1), 3px 3px 3px rgba(0, 0, 0, 0.2);
+			}
+
+			.header {
+				position: absolute;
+				top: 10px;
+			}
+
+			.list {
+				position: absolute;
+				top: 120px;
+				max-height: 280px;
+				height: auto;
+				overflow: hidden auto;
+			}
+
+			.title {
+				font-size: 10px;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				font-family: 'kaiti';
+			}
+
+			.title h2 {
+				font-size: 18px;
+				margin-left: 20px;
+			}
+
+			.title .search {
+				width: 12.5rem;
+				height: 28px;
+				border-radius: 20px;
+				padding: 5px 10px;
+				margin-right: 20px;
+			}
+
+
+			.todolist input.content {
+				width: var(--input-width);
+				padding-left: 10px;
+			}
+
+
+			.todolist .item {
+				width: var(--input-width);
+				border: #FF0000 2ps solid;
+				list-style: none;
+				position: relative;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				border: 1px solid rgba(0, 0, 0, 0.1);
+			}
+
+
+			.item:hover {
+				background-color: #e5f5ff;
+			}
+
+			.no-content {
+				font-size: 1.25rem;
+				color: rgba(0, 0, 0, 0.5);
+			}
+
+			.left,
+			.right {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			input.checkbox {
+				width: 18px;
+				height: 18px;
+			}
+
+			.footer {
+				position: absolute;
+				bottom: 10px;
+				display: inline-flex;
+				border-top: 2px solid rgba(0, 0, 0, 0.1);
+				justify-content: space-between;
+				align-items: center;
+				width: var(--input-width);
+
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="todolist">
+			<div class="header">
+				<div class="title">
+					<h2>任务列表</h2>
+					<input type="search" class="search" placeholder="keyword ..." />
+				</div>
+				<input type="text" id="content" class="content" value="" placeholder="请输入任务..." />
+			</div>
+
+			<ul class="list"> </ul>
+			<div class="footer">
+				<div class="left">
+					<div class="task-process">
+						<span id="finsh">已完成0</span>
+						/
+						<span id="total">全部0</span>
+					</div>
+				</div>
+				<div class="right">
+					<button class="btn btn-danger">删除全部</button>
+				</div>
+
+
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			function getListItem() {
+				return document.querySelector('.list')
+			}
+
+			function getItem() {
+				return document.querySelectorAll('.item')
+			}
+
+			/**
+			 * @param {Object} dom 添加事件
+			 */
+			function addEvent(dom) {
+				let input = dom.querySelector('.left input')
+				let span = dom.querySelector('.left span')
+				let btns = dom.querySelectorAll('.right button')
+
+				// 对象内容
+				let time = dom.getAttribute('time')
+				let isCheck = input.checked
+				let content = span.innerText
+
+				input.addEventListener('change', e => {
+					// 更新内容 注意list需要重新获取 否则出现更新错误的bug！！！
+					updateObj(new Active(content, time, e.target.checked), getList())
+
+				})
+
+
+				btns[0].addEventListener('click', (e) => {
+					let result = prompt('编辑', content)
+					// 更新内容 注意list需要重新获取 否则出现更新错误的bug！！！
+					if (!result) {
+						result = content
+					}
+					updateObj(new Active(result, time, isCheck), getList())
+				})
+
+				btns[1].addEventListener('click', (e) => {
+					if (confirm('确认删除:' + content + '?')) {
+						dom.remove()
+						removeObj(time, getList())
+					}
+				})
+
+
+			}
+
+
+
+
+
+
+
+			/**
+			 * 搜索内容关键词
+			 * @param {Object} keywords关键词
+			 */
+			function search(keywords) {
+				return getList().filter(item => {
+					return item && item.value && item.value.indexOf(keywords) != -1
+				})
+			}
+
+			function flush() {
+				// 移除原来节点
+				const items = document.querySelectorAll('.item')
+				items.forEach(item => {
+					if (item) {
+						item.remove()
+					}
+				})
+				// 刷新页面内容
+
+			}
+
+
+
+			function addInputEnter() {
+				var uls = getListItem()
+				var input = document.getElementById('content')
+				input.addEventListener('keyup', function(e) {
+					if (e.key == "Enter") {
+						if (e.target.value === '') {
+							alert('添加失败！内容不能为空！')
+							return
+						}
+						let o = new Active(e.target.value, Date.now(), false)
+						create(uls, o, true)
+						setTimeout(()=>{
+							e.target.value = ''
+						},0)
+					}
+				})
+
+
+			}
+
+
+
+			function addSearchEvent() {
+				var uls = getListItem()
+				document.querySelector('.search').addEventListener('keyup', function(e) {
+					if (e.key == "Enter") {
+						let value = e.target.value
+						let objs = search(value)
+						// 移除原来节点
+						flush()
+						if (validArray(objs)) {
+							// 创建新的节点
+							objs.reverse()
+							for (var i = 0; i < objs.length; i++) {
+								create(uls, objs[i], false)
+							}
+						} 
+						notContentDOM(objs)
+					}
+				})
+
+			}
+
+
+			/**
+			 * 移除内容不存在文字
+			 */
+
+			function removeNotContentDOM() {
+				let div = document.querySelector('.no-content')
+				if (div) {
+					div.remove()
+				}
+			}
+
+			function notContentDOM(list) {
+				let uls = getListItem()
+				if (validArray(list)) {
+					removeNotContentDOM()
+				} else {
+					let div = document.createElement('div')
+					div.className = 'no-content'
+					div.innerText = '暂无内容！'
+					uls.appendChild(div)
+				}
+
+			}
+
+			function deleteAll() {
+				document.querySelector('.footer .right .btn').onclick = () => {
+					if (confirm('确认删除全部任务？')) {
+						saveLocal(new Array())
+						flush()
+						count()
+					}
+				}
+			}
+
+
+
+			function loadEvent() {
+				var uls = getListItem()
+				const list = getList()
+				notContentDOM(list)
+				if (validArray(list)) {
+					list.reverse()
+					for (var i = 0; i < list.length; i++) {
+						create(uls, list[i], false)
+					}
+				}
+
+
+			}
+
+
+			/**
+			 * 添加节点
+			 * @param {Object} element
+			 * @param {Object} str
+			 */
+			function create(element, obj, isAdd) {
+
+				if (isAdd === true) {
+					save(obj, getList(), true)
+					if (validValue(obj.value) && !confirm('该内容已经存在，是否添加？')) return
+				}
+
+				if (obj && obj.value && obj.value.length > 50) {
+					alert('内容不得超过50个字')
+					return;
+				}
+
+
+				var li = document.createElement('li')
+				li.setAttribute('time', obj.time)
+				li.className = 'item'
+
+				var divLeft = document.createElement('div')
+				divLeft.className = 'left'
+				li.appendChild(divLeft)
+				var leftInput = document.createElement('input')
+				var leftSpan = document.createElement('span')
+				leftInput.type = 'checkbox'
+				leftInput.checked = obj.isCheck
+				leftInput.className = 'checkbox'
+				leftSpan.innerText = obj.value
+
+				leftInput.setAttribute('time', obj.time)
+				divLeft.appendChild(leftInput)
+				divLeft.appendChild(leftSpan)
+
+				var divRight = document.createElement('div')
+				var editButton = document.createElement('button')
+				var deleteButton = document.createElement('button')
+
+				divRight.className = 'right'
+				editButton.innerText = '编辑'
+				editButton.className = 'btn btn-text'
+				editButton.type = 'button'
+				deleteButton.innerText = '删除'
+				deleteButton.className = 'btn btn-text'
+
+				deleteButton.type = 'button'
+				divRight.appendChild(editButton)
+				divRight.appendChild(deleteButton)
+				li.appendChild(divRight)
+
+				// 添加节事件
+				addEvent(li)
+				// 统计完成数量
+				count()
+
+				element.prepend(li)
+			}
+
+
+
+
+			/**
+			 * 统计完成内容数量
+			 */
+			function count() {
+				var finsh = document.querySelector('#finsh')
+				var total = document.querySelector('#total')
+				let list = getList()
+				let totalCount = 0;
+				let findshTotal = 0;
+				for (var i = 0; i < list.length; i++) {
+					if (list[i].isCheck === true) {
+						findshTotal++
+					}
+				}
+				finsh.innerText = '已完成' + findshTotal
+				total.innerText = '全部' + list.length
+			}
+
+
+
+
+			/**
+			 * 事件活动类
+			 */
+
+			class Active {
+				constructor(value, time, isCheck) {
+					this.value = value
+					this.time = time
+					this.isCheck = isCheck
+				}
+			}
+
+
+			/**
+			 * 获取本地浏览器存储的list内容
+			 */
+			function getList() {
+				let list = JSON.parse(window.localStorage.getItem("items"))
+				return validList(list)
+			}
+
+			/**
+			 * 保存内容到本地
+			 * @param {Object} list
+			 */
+			function saveLocal(list) {
+				window.localStorage.setItem("items", JSON.stringify(list))
+			}
+
+			/**
+			 * 返回一个数组
+			 * @param {Object} list
+			 */
+			function validList(list) {
+				return validArray(list) ? list : []
+			}
+			
+			function validArray(list){
+				return Array.isArray(list) && list.length!==0
+			}
+
+			/**
+			 * 判断两个时间戳是否相等
+			 * @param {t1} 
+			 * @param {t2} 
+			 */
+			function validTime(t1, t2) {
+				return parseInt(t1) === parseInt(t2)
+			}
+
+			/**
+			 * 验证内容
+			 * @param {Object} str 输入的内容
+			 */
+			function validValue(str) {
+				const spans = document.querySelectorAll('.item span')
+				for (var i = 0; i < spans.length; i++) {
+					if (spans[i].innerText === str) {
+						return true
+					}
+				}
+				return false
+			}
+
+
+
+			function updateObj(obj, list) {
+				for (var i = 0; i < list.length; i++) {
+					if (validTime(list[i].time, obj.time)) {
+						console.log(obj.time);
+						list[i] = obj
+						// 修改DOM节点内容
+						objChange(obj)
+					}
+				}
+				saveLocal(list)
+				// 修改完成数量
+				count()
+			}
+
+
+
+			function objChange(obj) {
+				let lis = getItem()
+				for (var i = 0; i < lis.length; i++) {
+					let span = lis[i].querySelector('span')
+					let time = lis[i].getAttribute('time')
+					if (validTime(time, obj.time)) {
+						span.innerText = obj.value
+					}
+
+				}
+			}
+
+			function removeObj(time, list) {
+				for (var i = 0; i < list.length; i++) {
+					if (validTime(time, list[i].time)) {
+						list.splice(i, 1)
+					}
+				}
+				saveLocal(list)
+				count()
+			}
+
+			function save(obj, list, isCreate) {
+				let arr = validList(list)
+				// 移除没有内容
+				removeNotContentDOM()
+				// 添加节点
+				if (isCreate) {
+					arr.unshift(obj)
+				}
+				// 保存到本地
+				saveLocal(arr)
+			}
+
+
+
+			window.onload = () => {
+				// 加载已经添加事件
+				loadEvent()
+				// 添加enter事件
+				addInputEnter()
+				// 添加搜索事件
+				addSearchEvent()
+				// 添加删除全部任务事件
+				deleteAll()
+			}
+		</script>
+
+	</body>
+
+</html>
