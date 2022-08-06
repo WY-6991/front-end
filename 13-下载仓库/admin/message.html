@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>后台管理</title>
+		<link rel="stylesheet" type="text/css" href="../css/boostrap.min.css" />
+		<script src="../js/boostrap.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+
+		<div class="container col-xl-6 col-sm-12 col-xs-12 col-xxl-4 px-10 py-10 mt-5">
+			<header
+			class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+			<ul class="nav col-10  justify-content-center ">
+				<li><a href="/" class="nav-link px-1 link-secondary">index</a></li>
+				<li><a href="./main.html" class="nav-link px-1 link-secondary">首页</a></li>
+				<li><a href="./file.html" class="nav-link px-1 link-secondary">文件管理</a></li>
+				<li><a href="./user.html" class="nav-link px-1 link-secondary">用户管理</a></li>
+				<li><a href="./category.html" class="nav-link px-1 link-secondary">分类管理</a></li>
+				<li><a href="./notice.html" class="nav-link px-1 link-secondary">通知管理</a></li>
+				<li><a href="./personal.html" class="btn link-secondary px-1">我的信息</a></li>
+			</ul>
+
+			<div class="col-2 text-end">
+				<a href="../login.html" class="btn link-secondary me-2">退出</a>
+			</div>
+		</header>
+
+			<section class="main">
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+					<li class="nav-item" role="presentation">
+						<button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+							type="button" role="tab" aria-controls="home" aria-selected="true">未读</button>
+					</li>
+					<li class="nav-item" role="presentation">
+						<button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+							type="button" role="tab" aria-controls="profile" aria-selected="false">已读</button>
+					</li>
+				</ul>
+
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+						<div class="message mt-4">
+							<div class="card mt-4">
+								<h5 class="card-header" style="font-size: 16px;">2191377759@qq.com</h4>
+									<div class="card-body btn-group-sm">
+										<p class="card-text" style="font-size: 14px;">可以上传一些内容好看的东西嘛？</p>
+										<button class="btn btn-primary btn-sm">已阅</button>
+										<button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal"
+											data-bs-target="#exampleModal" data-bs-whatever="@mdo">回复</button>
+										<button class="btn btn-danger btn-sm">删除</button>
+									</div>
+							</div>
+							<div class="card mt-4">
+								<h5 class="card-header" style="font-size: 16px;">2191377759@qq.com</h4>
+									<div class="card-body btn-group-sm">
+										<p class="card-text" style="font-size: 14px;">可以上传一些内容好看的东西嘛？</p>
+										<button class="btn btn-primary btn-sm">已阅</button>
+										<button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal"
+											data-bs-target="#exampleModal" data-bs-whatever="@mdo">回复</button>
+										<button class="btn btn-danger btn-sm">删除</button>
+									</div>
+							</div>
+
+
+						</div>
+					</div>
+					<div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+						<div class="message mt-4">
+							<div class="card mt-4">
+								<h5 class="card-header" style="font-size: 16px;">2191377759@qq.com</h4>
+									<div class="card-body btn-group-sm">
+										<p class="card-text" style="font-size: 14px;">docker</p>
+										<button class="btn btn-primary btn-sm">已阅</button>
+										<button type="button" class="btn btn-dark btn-sm" data-bs-toggle="modal"
+											data-bs-target="#exampleModal" data-bs-whatever="@mdo">回复</button>
+										<button class="btn btn-danger btn-sm">删除</button>
+									</div>
+							</div>
+
+
+						</div>
+					</div>
+
+				</div>
+
+
+
+				</main>
+
+
+
+				<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+					aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">New message</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal"
+									aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<form>
+									<div class="mb-3">
+										<label for="recipient-name" class="col-form-label">Recipient:</label>
+										<input type="text" class="form-control" id="recipient-name">
+									</div>
+									<div class="mb-3">
+										<label for="message-text" class="col-form-label">Message:</label>
+										<textarea class="form-control" id="message-text"></textarea>
+									</div>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-primary">Send message</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+		</div>
+
+	</body>
+</html>

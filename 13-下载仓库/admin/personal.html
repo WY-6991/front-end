@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>个人中心</title>
+		<link rel="stylesheet" type="text/css" href="../css/boostrap.min.css" />
+		<script src="../js/boostrap.min.js" type="text/javascript" charset="utf-8"></script>
+
+	</head>
+	<body>
+		<div class="container col-xl-6 col-sm-12 col-xs-12 col-xxl-4 px-10 py-10 mt-5">
+			<header
+			class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+			<ul class="nav col-10  justify-content-center ">
+				<li><a href="/" class="nav-link px-1 link-secondary">index</a></li>
+				<li><a href="./main.html" class="nav-link px-1 link-secondary">首页</a></li>
+				<li><a href="./file.html" class="nav-link px-1 link-secondary">文件管理</a></li>
+				<li><a href="./user.html" class="nav-link px-1 link-secondary">用户管理</a></li>
+				<li><a href="./category.html" class="nav-link px-1 link-secondary">分类管理</a></li>
+				<li><a href="./notice.html" class="nav-link px-1 link-secondary">通知管理</a></li>
+				<li><a href="./personal.html" class="btn link-secondary px-1">我的信息</a></li>
+			</ul>
+
+			<div class="col-2 text-end">
+				<a href="../login.html" class="btn link-secondary me-2">退出</a>
+			</div>
+		</header>
+
+
+
+			<main>
+
+				<form action="" method="post" class="col-lg-8 col-sm-8 col-xs-12 col-xxl-12 px-10 py-10 mt-5 form"
+					style="
+				margin: auto;">
+					<div class="mb-3 row">
+						<label for="inputPassword" class="col-sm-3 col-form-label">用户名</label>
+						<div class="col-sm-9">
+							<input type="password" class="form-control" id="inputPassword" required>
+						</div>
+					</div>
+					<div class="mb-3 row">
+						<label for="inputPassword" class="col-sm-3 col-form-label">密码</label>
+						<div class="col-sm-9">
+							<input type="password" id="password" name="password" class="form-control"
+								id="inputPassword">
+						</div>
+					</div>
+					<div class="mb-3 row">
+						<label for="verifyPassword" class="col-sm-3 col-form-label">验证密码</label>
+						<div class="col-sm-9">
+							<input type="password" class="form-control" id="verifyPassword" name="verifyPassword">
+						</div>
+					</div>
+					<div class="mb-3 row">
+						<label for="email" class="col-sm-3 col-form-label">邮箱</label>
+						<div class="col-sm-9">
+							<input type="email" name="email" class="form-control" id="email" required>
+						</div>
+					</div>
+					<div class="mb-3 row">
+						<label for="role" class="col-sm-3 col-form-label">角色信息</label>
+						<div class="col-sm-9">
+							<input type="password" class="form-control" id="role" readonly>
+						</div>
+					</div>
+					<div class="mb-3 row">
+						<button type="submit"  class="btn btn-primary btn-sm col-sm-12">提交</button>
+					</div>
+				</form>
+
+
+
+
+
+			</main>
+
+
+	</body>
+</html>

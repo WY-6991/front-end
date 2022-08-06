@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>留言板</title>
+	<link rel="stylesheet" type="text/css" href="css/boostrap.min.css" />
+	<script src="js/boostrap.min.jss"></script>
+	<style>
+		.bg {
+			width: 100vw;
+			height: 100vh;
+			background: url(./img/bg1.jpg);
+			background-position: center;
+			background-size: cover;
+			background-repeat: no-repeat;
+			filter: blur(10px);
+			z-index: -1;
+			position: fixed;
+		}
+
+		.container {
+			z-index: 10;
+		}
+
+		a {
+			text-decoration: none;
+			color: #34383C !important;
+		}
+
+		a[href^='email']::before {
+			content: ' ✉ ';
+		}
+
+		a:hover {
+			text-decoration: underline;
+			/* background-color: rgba(0,0,0,0.1) !important; */
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container col-xl-6 col-sm-12 col-xs-12 col-xxl-4 px-10 py-10 mt-5">
+		<header
+			class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+
+			<ul class="nav col-8 col-md-auto mb-2 justify-content-center mb-md-0">
+				<li><a href="index.html" class="nav-link px-2 link-secondary text-decoration-none">首页</a></li>
+				<li><a href="message.html" class="nav-link px-2 link-dark text-decoration-none">留言</a></li>
+				<li><a href="./admin/main.html" class="nav-link px-2 link-dark text-decoration-none">管理</a></li>
+			</ul>
+
+			<div class="col-4 text-end">
+				<a href="./login.html" class="btn btn-outline-primary btn-sm me-2 text-decoration-none">登录</a>
+				<a href="./register.html" class="btn btn-outline-primary btn-sm  me-2 text-decoration-none">注册</a>
+			</div>
+		</header>
+		<h3 class="mb-3">欢迎来到留言版！</h3>
+		<div class="mb-2 mt-2">
+			<span>您可以通过邮箱联系我</span><a href="email:+2191377759@qq.com">2191377759@qq.com</a>
+			<span>或者通过留言板</span>
+		</div>
+
+		<form action="" method="">
+			<div class="mb-2 mt-4">
+				<label for="email" class="form-label">邮箱</label>
+				<input type="email" class="form-control" id="email" placeholder="xxx@xxx.com" required>
+			</div>
+			<div class="mb-3">
+				<label for="exampleFormControlTextarea1" class="form-label">留言内容</label>
+				<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+			</div>
+			<div class="mb-3 btn-group-sm">
+				<a class="btn btn-outline-dark" href="javascript:history.go(-1)" style="text-decoration: none;">返回</a>
+				<button class="btn btn-primary " type="submit">提交</button>
+			</div>
+		</form>
+
+
+	</div>
+
+</body>
+
+</html>
