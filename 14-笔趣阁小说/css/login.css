@@ -1,0 +1,97 @@
+.login-title {
+
+	font-size: 1.25rem;
+	color: black;
+	padding: 10px;
+	padding-left: 40px;
+	border-bottom: 1px solid rgba(100, 100, 100, 0.5);
+	width: 100%;
+	box-sizing: border-box;
+}
+
+
+.login-title {
+
+	font-size: 1.25rem;
+	color: black;
+	padding: 10px;
+	padding-left: 40px;
+	border-bottom: 1px solid rgba(100, 100, 100, 0.5);
+	width: 100%;
+
+}
+
+
+.login-container {
+	background-color: #ffffff;
+	width: 100%;
+}
+
+.form-item {
+	display: flex;
+	justify-content: space-around;
+	margin: 20px 0;
+	box-sizing: border-box;
+
+}
+
+.form-item .form-lable {
+	box-sizing: border-box;
+	width: 100px;
+	text-align: left;
+	display: flex;
+	align-items: center;
+	color: black;
+	font-size: 14px;
+}
+
+.form-item input {
+	box-sizing: border-box;
+	border: 1px solid rgba(100, 100, 100, 0.5);
+	outline: none;
+	padding: 5px;
+	width: 300px !important;
+}
+
+.form-item button {
+	padding: 5px;
+	width: 300px !important;
+	cursor: pointer;
+}
+
+
+.form-item input:focus {
+	outline: none;
+}
+
+
+.right-title {
+	color: black;
+	padding: 10px;
+	border-bottom: 1px solid rgba(100, 100, 100, 0.5);
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.novel-container-right ul {
+	padding:  10px;
+}
+
+.novel-container-right ul li {
+	padding: 5px  0px 5px 0;
+}
+
+.r_header{
+	padding: 10px 10px 0px 10px;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 1.5;
+	color: #000;
+}
+
+.r_title{
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 1.5;
+	color: #a5a5a5;
+}

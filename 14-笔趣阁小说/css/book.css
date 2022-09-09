@@ -1,0 +1,145 @@
+.book-container {
+	position: relative;
+	background: rgb(233, 250, 255) !important;
+}
+
+
+.book-container ul.novel-nav {
+	width: 100%;
+	text-align: left;
+	padding: 10px;
+	box-sizing: border-box;
+	background-color: #ffff7f;
+	/* height: 30px; */
+	height: 30px;
+}
+
+
+.novel-nav li {
+	clear: both;
+	display: inline-block;
+}
+
+
+.novel-nav li::before {
+	content: '>'
+}
+
+.novel-nav li:first-child::before {
+	content: ''
+}
+
+.novel-nav li:last-child a {
+	color: black !important;
+	cursor: default !important;
+}
+
+.novel-nav li:last-child a:hover {
+	color: black !important;
+	text-decoration: none !important;
+}
+
+
+.novel-info {
+	margin-top: 5px;
+	display: block;
+	background-color: #708090;
+	height: 200px;
+	width: 100%;
+	position: relative;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+.novel-info .novel-img {
+	float: left;
+	background-color: red;
+	padding: 0.625rem;
+	box-sizing: border-box;
+	width: 20%;
+}
+
+.novel-info .novel-img img {
+	width: 140px;
+	height: 180px;
+}
+
+.novel-info-detail {
+	float: left;
+	width: 80%;
+	background-color: #fff;
+	padding: 10px;
+	height: 100%;
+	box-sizing: border-box;
+}
+
+.novel-info-tag {
+	margin: 10px 0;
+	/* background-color: #87CEEB; */
+}
+
+
+.advice-novel {
+	padding: 10px;
+	background-color: #A5A5A5;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+.advice-novel a::after {
+	content: ',';
+}
+
+.advice-novel a:last-child::after {
+	content: '';
+}
+
+
+.book-content-list {
+	box-sizing: border-box;
+	display: inline-flex;
+	flex-wrap: wrap;
+}
+
+.list-item {
+	display: inline-block;
+	padding: 8px 20px;
+	width: 100px;
+	overflow: hidden;
+	border: #808080 1px solid;
+	text-align: center;
+}
+
+
+
+/* detail 部分内容 */
+
+.book .book-title {
+	font-size: 24px;
+	text-align: center;
+	margin: 10px 0;
+}
+
+.book .book-tag {
+	text-align: center;
+}
+
+.book-content p {
+	font-size: 24px;
+	letter-spacing: 3px;
+	padding: 20px;
+}
+
+.book-content p::before {
+	content: "😀😀";
+}
+
+.book-content-footer {
+	text-align: center;
+	background-color: #008080;
+	padding: 20px;
+}
+
+.book-content-footer a {
+	font-size: 18px;
+}
