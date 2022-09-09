@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关门式组合特效</title>
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .container {
+            height: 100vh;
+            background: linear-gradient(200deg, #fffddd, #eeeddf);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+
+        .item {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            box-sizing: border-box;
+            margin: 10px;
+            /* 3d */
+            perspective: 600px;
+
+        }
+
+        .item .img {
+            position: absolute;
+            width: 300px;
+            height: 200px;
+            transform-origin: right;
+            transform: rotateY(0deg);
+            opacity: 1;
+            transition: 0.5s;
+        }
+
+        .caption {
+            z-index: 0 ;
+         
+            box-sizing: border-box;
+            position: absolute;
+            opacity: 1;
+            transition: 0.5s;
+            background-color: rgba(11, 215, 230, 0.863);
+            width: 100%;
+            height: 100%;
+            padding: 0 20px;
+            display: flex;
+            color: #fff;
+            flex-direction: column;
+            justify-content: center;
+            letter-spacing: 2px;
+            transform-origin: left;
+            opacity: 0;
+            transform: rotateY(90deg);
+        }
+
+        .caption h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+
+        }
+
+        .caption p {
+            font-size: 12px;
+        }
+
+        .img:hover {
+            opacity: 0;
+            transform: rotateY(-90deg);
+        }
+
+        .caption:hover {
+            opacity: 1;
+            transform: rotateY(0deg);
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="item">
+            <img src="../img/spring.png" alt="" class="img">
+            <div class="caption">
+                <h3>春</h3>
+                <p>
+                    春，汉语常用字 [1] ，读作chūn，最早见于甲骨文 [2]
+                    ，其本义是草木的种子生根发芽，后延伸至以“春”作为一年四季的第一季名。《说文解字》认为“春，推也”，也即有“春阳抚照，万物滋荣”之意，故又可延伸至生机勃勃，充满活力等意。
+                </p>
+
+            </div>
+        </div>
+        <div class="item">
+            <img src="../img/summer.png" alt="" class="img">
+            <div class="caption">
+                <h3>夏</h3>
+                <p>
+                    夏，汉语一级字，读作xià或jiǎ，最早见于甲骨文 [1] ，其本义是雄武的中国人或中国人（两处的“中国”都特指“中原一带”），即《说文解字》所谓的“中国之人也”，后假借指一年四季之中的第二季。
+                </p>
+
+            </div>
+        </div>
+        <div class="item">
+            <img src="../img/autumn.png" alt="" class="img">
+            <div class="caption">
+                <h3>秋</h3>
+                <p>
+                    秋天之后就是万物肃杀的冬天，所以它也暗含着“萧瑟”之义，所以“秋”还可表示悲愁。古时与律令刑狱有关的事，也可称为“秋”。如刑部别称“秋曹”。
+                </p>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+</body>
+
+</html>
