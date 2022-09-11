@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>玻璃球加载效果</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+
+            height: 100vh;
+            background: linear-gradient(to bottom, #89f7fe, #66a6ff);
+        }
+
+        .wave {
+
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #66a6ff;
+            overflow: hidden;
+        }
+
+        .wave::before {
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            content: ' ';
+            left: 50%;
+            top: 0;
+            transform: translate(-50%, -65%);
+            border-radius: 45%;
+            background-color: rgba(255, 255, 255, 0.8);
+            animation: waveAni 5s linear infinite;
+
+        }
+
+        .wave::after {
+
+            position: absolute;
+            content: '加载中...';
+            left: 50%;
+            top: 0;
+            transform: translate(-50%, 40px);
+            color: #66a6ff;
+
+        }
+
+
+        @keyframes waveAni {
+
+            0% {
+                transform: translate(-50%, -65%) rotate(0deg);
+            }
+
+
+            100% {
+                transform: translate(-50%, -65%) rotate(360deg);
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="wave"></div>
+
+</body>
+
+</html>
