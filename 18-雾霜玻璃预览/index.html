@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雾霜玻璃预览</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .container {
+            height: 100%;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image {
+            position: absolute;
+            background-image: url(../img/image.png);
+            width: 100%;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            filter: blur(10px);
+            overflow: hidden;
+        }
+
+        .image::before {
+            position: absolute;
+            content: " ";
+            width: 100%;
+            height: 100%;
+            /* 设置背景色 */
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .cursor {
+            position: absolute;
+            /* overflow: hidden; */
+            top: 0;
+            background-image: url(../img/image.png);
+            width: 200px;
+            height: 200px;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            border: 2px solid white;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="image"></div>
+        <div class="cursor"></div>
+    </div>
+
+    <script>
+
+        const container = document.querySelector('.container')
+        const cursor = document.querySelector('.cursor')
+
+        container.addEventListener('mousemove', function (e) {
+
+            // 这里使用 e.target 会出现抖动原因是 监听到事件一直改变 出现事件循环
+            // let con = e.target.getBoundingClientRect()
+            let con = container.getBoundingClientRect()
+            let cos = cursor.getBoundingClientRect()
+            // console.log('con',con,'cos',cos)
+            // debugger
+            let curX = e.clientX - con.left - cos.width / 2;
+            let curY = e.clientY - con.top - cos.height / 2;
+
+            cursor.style.left = `${curX}px `
+            cursor.style.top = `${curY}px `
+
+        })
+
+
+    </script>
+
+</body>
+
+</html>
