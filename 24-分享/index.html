@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>share</title>
+</head>
+
+<body>
+
+    <button>click</button>
+
+    <div class="result"></div>
+
+    <script>
+        const shareData = {
+            title: '虎牙',
+            text: '虎牙直播',
+            url: 'https://www.huya.com'
+        }
+
+        const btn = document.querySelector('button');
+        const resultPara = document.querySelector('.result');
+
+        // Share must be triggered by "user activation"
+        btn.addEventListener('click', async () => {
+            try {
+                await navigator.share(shareData)
+                resultPara.textContent = 'shared successfully'
+            } catch (err) {
+                resultPara.textContent = `Error: ${err}`
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>

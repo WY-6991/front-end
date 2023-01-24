@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>语音转换为文本</title>
+</head>
+
+<body>
+
+    <button>点击记录麦克风</button>
+
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+
+    <script>
+
+        const textarea = document.querySelector("textarea")
+        const button = document.querySelector("button")
+
+
+
+        const sr = new window.webkitSpeechRecognition() || new window.SpeechRecognition()
+
+
+        button.onclick = () => {
+            sr.start()
+        }
+
+        sr.onstart = () => {
+            textarea.innerText = '语音识别功能激活！'
+        }
+
+
+        let notecontent = ''
+        sr.onresult = (e) => {
+            console.log(e)
+            // 获取之前识别记录
+            const current = e.currentIndex
+           try {
+            e.srcElement.lang = 'zh-ch'
+           } catch (error) {
+            
+           }
+            const obj =e.results[0][0]
+            // console.log('obj',obj,e.results,e.results[0],e.results[0][0].transcript);
+            // console.log('obj',obj);
+
+            if (obj && obj.transcript) {
+                notecontent += obj.transcript
+                textarea.innerText = notecontent
+            } else {
+                console.log('error');
+
+            }
+        }
+
+        sr.onspeechend = () => {
+            // textarea.innerText = '语音识别结束'
+            console.log('finshed!!!');
+            
+        }
+
+        sr.onerror = () => {
+            textarea.innerText = '语音识别功能出错！'
+        }
+
+
+    </script>
+
+</body>
+
+</html>

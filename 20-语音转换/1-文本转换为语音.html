@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <form action="">
+        <input type="text">
+        <select name="" id="">
+            <option value=""></option>
+        </select>
+    </form>
+
+    <button>
+        copy
+    </button>
+
+    <h2>
+        title------------>
+    </h2>
+
+    <input type="text">
+
+
+
+    <script>
+
+        var synth = window.speechSynthesis;
+
+        var inputForm = document.querySelector('form');
+        var inputTxt = document.querySelector('input');
+        var voiceSelect = document.querySelector('select');
+
+        var voices = synth.getVoices();
+        console.log(voices)
+        function createVolices() {
+            for (const k of voices) {
+                console.log(k)
+                const v = document.createElement('option')
+                v.value = k
+                v.label = k.name
+                voiceSelect.appendChild(v)
+            }
+
+        }
+
+        createVolices()
+
+
+
+        inputForm.onsubmit = function (event) {
+            event.preventDefault();
+
+            var utterThis = new SpeechSynthesisUtterance(inputTxt.value);
+            var selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
+            for (i = 0; i < voices.length; i++) {
+                if (voices[i].name === selectedOption) {
+                    utterThis.voice = voices[i];
+                }
+            }
+            synth.speak(utterThis);
+            inputTxt.blur();
+        }
+
+    </script>
+
+
+    <script>
+
+        const button = document.querySelector("button")
+
+        button.onclick = () => {
+            navigator.clipboard
+                .readText()
+                .then((clipText) => {
+                        // (document.querySelector("h2").innerText += clipText)
+                        // (document.querySelector("h2").innerText += clipText)
+                        // (document.querySelector("h2").innerText += clipText)
+                        // (document.querySelector("h2").innerText += clipText)
+                        console.log("cliptext", clipText)
+                        document.querySelector('form').innerText+=cliptext
+                    }
+                ).catch(e => {
+                    alert("文件读取失败！！！")
+                })
+        }
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>复制粘贴剪切</title>
+</head>
+
+<body>
+
+    <div class="source" contenteditable="true">点击可以编辑文本内容</div>
+
+
+    <button>
+        点击复制
+    </button>
+
+    <button>
+        点击粘贴
+    </button>
+
+    <div class="textarea">
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+    </div>
+    <button>
+        点击剪切
+    </button>
+
+
+    <script>
+
+        const source = document.querySelector('div.source');
+        const textarea = document.querySelector('textarea');
+
+
+
+        const buttons = document.querySelectorAll('button')
+
+        buttons[0].onclick = () => {
+            navigator.clipboard
+                .writeText(source.innerText)
+                .then(
+                    (clipText) => {
+                        console.log('succes')
+                        // alert("copy success")
+                    }
+                );
+        }
+
+        buttons[1].onclick = () => {
+            navigator.clipboard
+                .readText()
+                .then(
+                    (clipText) => (textarea.innerText += clipText)
+                );
+        }
+
+        // 剪切事件其实本质就是copy事件不过是将操作元素文本内容清空了而已
+        buttons[2].onclick = () => {
+            navigator.clipboard
+                .writeText(textarea.innerText)
+                .then(
+                    (clipText) => {
+                       setTimeout(() => {
+                        textarea.innerText = ''
+                       }, 1000);
+                        // alert("cut success")
+                    }
+                );
+                
+        }
+    </script>
+
+    <script>
+
+
+
+    </script>
+
+</body>
+
+</html>
