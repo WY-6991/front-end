@@ -24,6 +24,7 @@
             display: block;
             text-decoration: none;
             position: absolute;
+            color:teal;
         }
 
 
@@ -37,7 +38,7 @@
             width: 0%;
             height: 1px;
             bottom: -2px;
-            border-bottom: 1px solid rgb(42, 38, 228);
+            border-bottom: 1px solid teal;
             right: 50%;
             transform: translateX(50%);
             transition: width ease-out 0.2s;
@@ -49,21 +50,18 @@
         }
 
         a:hover::after{
-            content: " ";
+            content: "🔗";
             position: absolute;
-            background-image: url(./url.png);
-            background-repeat: no-repeat;
-            background-size: cover;
             height: 20px;
             width: 20px;
-            opacity: 0.5;
+            opacity: 0.4;
         }
       
     </style>
 </head>
 <body>
 
-    <a href="#">印记中文网</a>
+    <a href="https://docschina.org/" target="_blank">印记中文网</a>
     
 </body>
 </html>
