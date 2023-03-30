@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义消息-复制粘贴-朗读</title>
+
+    <style>
+        :root {
+            --opacity: 0.8;
+            --opacity-hover: 1;
+            --info: rgba(30, 30, 30, var(--opacity));
+            --primary: rgba(54, 77, 176, var(--opacity));
+            --success: rgba(80, 183, 51, var(--opacity));
+            --warning: rgba(218, 154, 22, var(--opacity));
+            --danger: rgba(235, 76, 76, var(--opacity));
+            --info-hover: rgba(30, 30, 30, var(--opacity-hover));
+            --primary-hover: rgba(54, 77, 176, var(--opacity-hover));
+            --success-hover: rgba(80, 183, 51, var(--opacity-hover));
+            --warning-hover: rgba(218, 154, 22, var(--opacity-hover));
+            --danger-hover: rgba(235, 76, 76, var(--opacity-hover));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 100vh;
+            width: 100%;
+        }
+
+        .msg {
+            padding: 10px;
+            color: #fff;
+            width: 500px;
+            height: 20px;
+            text-align: center;
+            border-radius: 5px;
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            transform: translate(-50%, -50px);
+            opacity: 0;
+
+        }
+
+
+        @keyframes msg {
+            0% {
+                transform: translate(-50%, -50px);
+                opacity: 0;
+            }
+
+            40% {
+                opacity: 1;
+                transform: translate(-50%, 0px);
+            }
+
+            100% {
+                transform: translate(-50%, 0px);
+                opacity: 0;
+            }
+        }
+
+
+        .btn-group {
+            position: absolute;
+            left: 100px;
+            bottom: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            display: inline-block;
+            cursor: pointer;
+            border: none;
+            background-color: var(--info);
+            border-radius: 20px;
+            color: #fff;
+            /* animation: ease-in-out; */
+        }
+
+        .btn:hover {
+            background-color: var(--info-hover);
+        }
+
+        .btn-info,
+        .info {
+            background-color: var(--info);
+        }
+
+        .btn-info:hover {
+            background-color: var(--info-hover);
+        }
+
+
+        .btn-primary,
+        .primary {
+            background-color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-success,
+        .success {
+            background-color: var(--success);
+        }
+
+        .btn-success:hover {
+            background-color: var(--success-hover);
+        }
+
+        .btn-warning,
+        .warning {
+            background-color: var(--warning);
+        }
+
+        .btn-warning:hover {
+            background-color: var(--warning-hover);
+        }
+
+        .btn-danger,
+        .danger {
+            background-color: var(--danger);
+        }
+
+        .btn-danger:hover {
+            background-color: var(--danger-hover);
+        }
+
+        .container {
+            /* background-color: bisque; */
+            padding: 20px;
+        }
+
+        #input,
+        #textarea {
+            border: none;
+            outline: skyblue 2px solid;
+            padding: 5px 10px;
+            width: 400px;
+        }
+
+        #input:focus,
+        #textarea:focus {
+            border: none;
+            outline: red 2px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <input type="text" id="input">
+        <button id="cut" class="btn">剪切</button>
+        <button id="copy" class="btn">复制</button>
+        <br><br>
+        <textarea name="textarea" id="textarea" cols="30" rows="10"></textarea>
+        <button id="paste" class="btn">粘贴</button>
+        <button id="speack" class="btn">阅读</button>
+    </div>
+
+    <div class="btn-group">
+        <button class="btn btn-info">default</button>
+        <button class="btn btn-primary">primary</button>
+        <button class="btn btn-success">success</button>
+        <button class="btn btn-warning">warning</button>
+        <button class="btn btn-danger">danger</button>
+    </div>
+
+    <script>
+
+        function $(element) {
+            return document.querySelector(element)
+        }
+        let body = $('body')
+
+        let timer = null
+        function click(btnSelector, msgSelector, text = null) {
+            let btn = $(btnSelector)
+            btn.onclick = () => {
+                Message(msgSelector, text)
+            }
+
+        }
+
+        function Message(selector, text) {
+            const div = document.createElement('div')
+            div.className = `msg ${selector}`
+            switch (selector) {
+                case 'success':
+                    div.textContent = '这是成功消息'
+                    break;
+                case 'primary':
+                    div.textContent = '这是主要消息'
+                    break;
+                case 'warning':
+                    div.textContent = '这是警告消息'
+                    break;
+                case 'danger':
+                    div.textContent = '这是危险消息'
+                    break;
+                default:
+                    div.textContent = '这是默认消息'
+                    div.className = `msg info`
+                    break;
+            }
+            body.appendChild(div)
+            // 清除上一个计时器
+            if (timer != null) {
+                clearTimeout(timer)
+            }
+            div.style.animation = 'msg 1.5s ease-out 200ms forwards'
+            let before = div.innerText
+            if (text) {
+                div.innerText = text
+            }
+            timer = setTimeout(() => {
+                div.style.animation = 'none'
+                div.innerText = before
+            }, 1500);
+        }
+
+        // 通过遍历方式添加点击事件
+        ['info', 'primary', 'success', 'warning', 'danger'].map(i => ['.btn-' + i, i]).forEach(item => click(item[0], item[1]))
+
+        function copy() {
+            let btn = $('.container #copy')
+            let input = $('#input')
+            btn.onclick = () => {
+                if (!input.value) {
+                    Message('warning', '内容不能为空！')
+                    return;
+                }
+                window.navigator.clipboard.writeText(input.value).then(() => {
+                    Message('success', '复制成功！')
+                }).catch(() => {
+                    Message('danger', '复制失败！')
+                })
+            }
+        }
+
+        copy()
+
+        function cut() {
+            let btn = $('.container #cut')
+            let input = $('#input')
+            btn.onclick = () => {
+                if (!input.value) {
+                    Message('warning', '内容不能为空！')
+                    return;
+                }
+                window.navigator.clipboard.writeText(input.value).then(() => {
+                    Message('success', '剪切成功')
+                    input.value = ''
+                }).catch(() => {
+                    Message('danger', '剪切失败')
+                })
+
+            }
+        }
+        cut()
+
+
+        function paste() {
+            let btn = $('.container #paste')
+            let input = $('#textarea')
+            btn.onclick = () => {
+                window.navigator.clipboard.readText().then((text) => {
+                    if (!text) {
+                        Message('warning', '粘贴内容为空！')
+                        return;
+                    }
+                    Message('success', '内容已粘贴成功')
+                    input.value += text
+                }).catch(() => {
+                    Message('danger', '粘贴失败！')
+                })
+            }
+        }
+
+        paste()
+
+        function read() {
+            let btn = $('.container #speack')
+            let input = $('#textarea')
+            btn.onclick = () => {
+                if (!input.value) {
+                    Message("danger", '内容不能为空！')
+                    return;
+                }
+                var utterThis = new SpeechSynthesisUtterance(input.value);
+                var synth = window.speechSynthesis;
+                synth.speak(utterThis);
+            }
+        }
+
+        read()
+    </script>
+
+</body>
+
+</html>
