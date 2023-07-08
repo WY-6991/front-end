@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login-1</title>
     <link rel="stylesheet" href="./css/index.css">
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js "></script>
+    
 </head>
 
 <body>
@@ -23,8 +23,6 @@
 
     <script>
         const container = document.querySelector('.container')
-        console.log(container);
-
 
         let isIn = true
         let isOut = false
@@ -35,16 +33,14 @@
                 // 获取鼠标进入是位置
                 let inX = e.clientX - e.target.offsetLeft;
                 let inY = e.clientY - e.target.offsetTop;
-                console.log('x', inX, 'y', e.clientY - e.target.offsetTop)
-
                 // 创建元素
                 let element = document.createElement('span')
                 element.style.left = inX + 'px'
                 element.style.top = inY + 'px'
                 container.appendChild(element)
-
-                // 创建元素
-                $('.container span').removeClass('out').addClass('in')
+                const s = document.querySelector('.container span')
+                s.classList.remove('out')
+                s.classList.add('in')
 
                 // 创建元素
                 span = document.querySelector('.container span')
@@ -60,11 +56,15 @@
                 // 获取鼠标进入是位置
                 let outX = e.clientX - e.target.offsetLeft;
                 let outY = e.clientY - e.target.offsetTop;
-                // console.log('x', inX, 'y', e.clientY - e.target.offsetTop)
                 // 添加和删除样式
-                $('.container span').removeClass('in').addClass('out')
+                const s = document.querySelector('.container span')
+                s.classList.remove('out')
+                s.classList.add('out')
 
-                $('.container .out').css({ 'left': outX + 'px', 'top': outY + 'px' })
+                const out = document.querySelector('.container .out')
+                out.style.left = outX + 'px'
+                out.style.top = outY + 'px' 
+
                 // 创建元素
                 span = document.querySelector('.container span')
 
